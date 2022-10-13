@@ -112,7 +112,34 @@ Fluxo Alternativo(1):
 Fluxo de exceção:
 
 
+User: Login(Subentendido em todas as ações)
 
+-----User[1]-----
+Use Case: Entrar para corrida
+
+Descrição: O utilizador entra no jogo e escolhe uma corrida
+Pre-condição: O utilizador tem conta de utilizador
+Pós-condição: O jogo é terminado
+Fluxo normal:
+1. O utilizador faz login na app.
+2. O utilizador escolhe o campeonato
+3. O utilizador valida os circuitos
+4. O utilizador escolhe o carro
+5. O utilizador escolhe o piloto
+6. O utilizador decide se quer fazer alterações à afinação
+7. O utilizador, antes de iniciar o cada circuito, escolhe o pneu
+8. O utilizador, antes de iniciar o cada circuito, escolhe a agressividade do motor
+9. No final de todas
+
+Descrição:
+Cenários:
+Pré-condição:
+Pós-condição:
+Fluxo normal:
+...
+Fluxo Alternativo(1):
+...
+Fluxo de exceção:
 
 -----Formato-----
 Use Case:
