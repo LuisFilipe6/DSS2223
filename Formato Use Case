@@ -1,0 +1,130 @@
+Atores: Users e Admins
+
+Users: Login(Subentendido em todas as ações), Interface(Campeonato,Circuito,Piloto,Carro),Jogar
+
+GDU:
+	1- Possível
+	2- Difícil
+	3- Impossível
+
+
+
+Admin: Login(Subentendido em todas as ações), Criar(Campeonato[1],Circuito[2],Carro[3],Piloto[4])
+
+
+-----Admin[1]-----
+Use Case:Criação de Campeonato
+
+Descrição:Um administrador cria um novo campeonato.
+Cenários:O João cria um novo campeonato com o nome "Campeonato do João".
+Pré-condição:O utilizador tem uma conta de administrador.
+Pós-condição:Um campeonato com o nome desejado foi criado e o sistema foi atualizado.
+Fluxo normal:
+1. Administrador insere o nome e a password
+2. Sistema valida acesso e pede operação
+3. Administrador seleciona a opção "Criar Campeonato"
+4. Sistema pede operação
+5. Administrador seleciona a opção "Campeonatos Disponíveis"
+6. Sistema pergunta o nome pretendido para o campeonato
+7. Administrador introduz o nome pretendido
+8. Sistema atualiza
+
+Fluxo Alternativo(1): [Criar um campeonato indisponível] (passo 5)
+5.1. Administrador seleciona a opção "Campeonatos Indisponíveis"
+5.2. Regressa a 6
+
+Fluxo de exceção (1): [Já existe um campeonato com o mesmo nome] (passo 8)
+8.1. Sistema informa administrador que já existe um campeonato com o mesmo nome
+8.2. Regressa a 6
+
+
+-----Admin[2]-----
+Use Case: Criação de Circuito
+
+Descrição: Um administrador cria um novo circuito.
+Cenários: O Joaquim cria um circuito diurno chamado "Quimdelícia".
+Pré-condição:O utilizador tem conta de administrador.
+Pós-condição:Um Circuito com o nome e especificações pretendidas é criado e o sistema é atualizado.
+Fluxo normal:
+1.  Administrador insere o nome e a password
+2.  Sistema valida acesso e pede operação
+3.  Administrador seleciona a opção "Criar Circuito"
+4.  Sistema pergunta tamanho, número de curvas e número de chicanes
+5.  Administrador introduz os dados pretendidos
+6.  Sistema pergunta tamanho, curvas e chicanes do circuito
+7.  Administrador introduz os dados pretendidos
+8.  Sistema calcula o número de retas do circuito, apresenta a lista de retas e curvas e pergunta que GDU associar a cada elemento da lista
+9.  Administrador introduz GDU para cada elemento da lista
+10. Sistema pergunta número de voltas
+11. Administrador introduz número de voltas pretendido
+12. Sistema pergunta a situação metereológica do circuito
+13. Administrador insere o estado metereológico pretendido
+12. Sistema grava e atualiza
+
+Fluxo Alternativo(1):  !!!NAO ME LEMBRO DE NENHUM!!!
+
+Fluxo de exceção(1): [Tamanho do circuito=0 ou algum dos parâmetros nulos] (Passo !)
+!! Sistema avisa falha na introdução dos valores
+!! Regressa a !
+
+Fluxo de exceção(2): [Número de voltas=0] (Passo !)
+!! Sistema avisa falha no número de voltas
+!! Regressa a !
+
+Fluxo de exceção():   !!!NAO ME LEMBRO DE NENHUM!!!
+
+
+-----Admin[3]-----
+Use Case: Criação de Carro
+
+Descrição: O Administrador cria um carro.
+Cenários: O Luís cria um carro a combustão de classe C1 com 6000cm3 de cilindrada
+Pré-condição: O utilizador tem conta de administrador
+Pós-condição: !!!
+Fluxo normal:
+1. O administrador insere nome e password
+2. Sistema valida acesso e pede operação
+3. Administrador seleciona a opção "Criar Carro"
+4. Sistema pergunta se o veículo é híbrido ou combustão
+5. Administrador seleciona a opção
+4. Sistema pergunta que categoria (válida) pretende
+5. Administrador seleciona categoria pretendida
+6. Sistema pergunta cilindrada
+7. Administrador introduz valor
+8. Sistema
+...
+Fluxo Alternativo(1):
+...
+Fluxo de exceção:
+
+
+-----Admin[4]-----
+Use Case: Criação de Pilotos
+
+Descrição: O Administrador cria um piloto.
+Cenários: O André cria um piloto para os amigos jogarem.
+Pré-condição: 
+Pós-condição:
+Fluxo normal:
+...
+Fluxo Alternativo(1):
+...
+Fluxo de exceção:
+
+
+
+
+-----Formato-----
+Use Case:
+
+Descrição:
+Cenários:
+Pré-condição:
+Pós-condição:
+Fluxo normal:
+...
+Fluxo Alternativo(1):
+...
+Fluxo de exceção:
+
+
