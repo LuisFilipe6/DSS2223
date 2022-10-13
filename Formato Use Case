@@ -29,9 +29,7 @@ Fluxo normal:
 7. Administrador introduz o nome pretendido
 8. Sistema atualiza
 
-Fluxo Alternativo(1): [Criar um campeonato indisponível] (passo 5)
-5.1. Administrador seleciona a opção "Campeonatos Indisponíveis"
-5.2. Regressa a 6
+Fluxo Alternativo(1): !!!NÃO SEI DE NENHUM!!!
 
 Fluxo de exceção (1): [Já existe um campeonato com o mesmo nome] (passo 8)
 8.1. Sistema informa administrador que já existe um campeonato com o mesmo nome
@@ -82,18 +80,25 @@ Cenários: O Luís cria um carro a combustão de classe C1 com 6000cm3 de cilind
 Pré-condição: O utilizador tem conta de administrador
 Pós-condição: !!!
 Fluxo normal:
-1. O administrador insere nome e password
-2. Sistema valida acesso e pede operação
-3. Administrador seleciona a opção "Criar Carro"
-4. Sistema pergunta se o veículo é híbrido ou combustão
-5. Administrador seleciona a opção
-4. Sistema pergunta que categoria (válida) pretende
-5. Administrador seleciona categoria pretendida
-6. Sistema pergunta cilindrada
-7. Administrador introduz valor
-8. Sistema
+1.  O administrador insere nome e password
+2.  Sistema valida acesso e pede operação
+3.  Administrador seleciona a opção "Criar Carro"
+4.  Sistema pergunta se o veículo é híbrido ou combustão
+5.  Administrador seleciona a opção combustão
+4.  Sistema pergunta que categoria (válida) pretende
+5.  Administrador seleciona categoria pretendida
+6.  Sistema pergunta cilindrada
+7.  Administrador introduz valor
+8.  Sistema pergunta a potência do motor a combustão
+9.  Administrador introduz a cavalagem
+10. Sistema pede o valor do perfil aerodinâmico do carro (PAC)
+11. Administrador indica o valor
+12. Sistema pergunta o nome do carro
+13. Administrador fornece o nome pretendido
+14. Sistema atualiza a lista de carros disponíveis com o novo veículo
 ...
-Fluxo Alternativo(1):
+Fluxo Alternativo(1): [Selecionou carro híbrido] (Passo !)
+
 ...
 Fluxo de exceção:
 
