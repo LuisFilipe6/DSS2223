@@ -6,7 +6,8 @@
  * @version (a version number or a date)
  */
 
-import Business.Carros.Carro;
+import Business.SSCampeonato.Carro;
+import Business.SSUtilizador.Jogador;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -16,13 +17,12 @@ import java.io.Serializable;
 
 public class CarteiraJogadores implements Serializable
 {
-    private Map<String,Jogador> jogadores; //key = nome jogador
+    private Map<String, Jogador> jogadores; //key = nome jogador
     private Set<Jogador> classificacao;
     
     public CarteiraJogadores()
     {
         this.jogadores = new HashMap<String,Jogador>();
-        this.classificacao = new TreeSet<Jogador>( new JogadorComparatorNome() );
     }
     
     public CarteiraJogadores(Map<String,Jogador> j, Set<Jogador> c)
@@ -74,7 +74,7 @@ public class CarteiraJogadores implements Serializable
     }
     
     /**
-     * Jogador por nome
+     * Business.SSUtilizador.Jogador por nome
      */
     public Jogador getJogador(String nome)
     {
@@ -84,11 +84,7 @@ public class CarteiraJogadores implements Serializable
     /**
      * Fazer Aposta do jogador
      */
-    public void apostar(String nome, Aposta a)
-    {
-        this.jogadores.get(nome).fazerAposta(a);
-    }
-    
+
     /**
     * Verificar se jogador existe
     */
@@ -100,13 +96,7 @@ public class CarteiraJogadores implements Serializable
     /**
      * Atualizar Apostas apos corrida
      */
-    public void atualizarHistoricoApostas(int nrprova)
-    {
-        for(Jogador j : this.jogadores.values())
-        {
-            j.atualizarHistoricoApostas(nrprova);
-        }
-    }
+
     
     /**
      * Atualizar melhores apostadores
@@ -133,7 +123,6 @@ public class CarteiraJogadores implements Serializable
         for(Jogador j : this.classificacao)
         {
             sb.append("\n");sb.append(i);sb.append("º ");sb.append(j.getNome());sb.append(" \t\t");
-            sb.append(j.getGanho());
             i++;
         }
         return sb.toString();
@@ -145,12 +134,7 @@ public class CarteiraJogadores implements Serializable
     public Map<String,Integer> vencedores(int nrprova, Set<Carro> resultados)
     {
         HashMap<String,Integer> aux = new HashMap<String,Integer>();
-        for(Jogador j : this.jogadores.values())
-        {
-            int tot = j.valorGanhoAposta(nrprova, resultados);
-            if( tot > 0)
-            aux.put(j.getNome(), tot);
-        }
+
         return aux;
     }
     
