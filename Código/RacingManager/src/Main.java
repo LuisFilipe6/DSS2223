@@ -11,7 +11,7 @@ public class Main {
         j.put("Rita1", "passw@rd");
 
         try {
-            new TextUI().run();
+            new TextUI();
         } catch(Exception e){
             System.out.println("Impossible to run TextUI");
         }

@@ -8,7 +8,7 @@ public class TextUI {
         String pw;
         int opcao;
         System.out.println("Bem vindo ao Racing Manager");
-        System.out.println("Pretende entrar como 0:utilizador, 1:convidado ou 2:Admin?:");
+        System.out.println("Pretende entrar como \n0:utilizador\n1:convidado\n2:Admin\nOpção:");
         opcao = Integer.parseInt(this.input.next());
         if (opcao == 0) {
             System.out.println("Introduza as suas credenciais");
