@@ -2,9 +2,6 @@ import java.util.Scanner;
 
 public class TextUI {
     private Scanner input;
-    private boolean menu{
-
-    }
 
     public TextUI(){
         String nome;
