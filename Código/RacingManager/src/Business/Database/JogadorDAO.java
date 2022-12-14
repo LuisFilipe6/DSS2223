@@ -3,10 +3,13 @@ package Business.Database;
 import Business.SSUtilizador.Jogador;
 
 import java.sql.*;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 
-public class JogadorDAO  {
+public class JogadorDAO implements Map {
 
     private Connection con;
 
@@ -83,11 +86,63 @@ public class JogadorDAO  {
         return -1;
     }
 
-    public boolean remove(int id){
+
+    @Override
+    public int size() {
+        int size = 0;
+        String query = "SELECT count(*)  from jogador";
+        try {
+            PreparedStatement preparedStmt = this.con.prepareStatement(query);
+
+            ResultSet rs = preparedStmt.executeQuery();
+
+            if(rs.next())
+                size = rs.getInt(1);
+
+        } catch (SQLException e){
+            System.out.println("Impossible to delete user: " + e.getMessage());
+        }
+        return size;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        if (size() == 0) return true; else return false;
+    }
+
+    @Override
+    public boolean containsKey(Object key) {
+        return false;
+    }
+
+    @Override
+    public boolean containsValue(Object value) {
+        return false;
+    }
+
+    @Override
+    public Object get(Object key) {
+        if(key instanceof String) {
+            return get((String) key);
+        }
+        if(key instanceof Integer) {
+            return get((Integer) key);
+        }
+        return null;
+    }
+
+    @Override
+    public Object put(Object key, Object value) {
+        return null;
+    }
+
+    @Override
+    public Object remove(Object key) {
+        if(!(key instanceof Integer)) return null;
         String query = "DELETE from jogador WHERE id = ?";
         try {
             PreparedStatement preparedStmt = this.con.prepareStatement(query);
-            preparedStmt.setInt(1, id);
+            preparedStmt.setInt(1, (Integer) key);
 
             if(preparedStmt.execute())
                 return true;
@@ -99,4 +154,29 @@ public class JogadorDAO  {
     }
 
 
+    /* Do I need to define */
+    @Override
+    public void putAll(Map m) {
+
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public Set keySet() {
+        return null;
+    }
+
+    @Override
+    public Collection values() {
+        return null;
+    }
+
+    @Override
+    public Set<Entry> entrySet() {
+        return null;
+    }
 }

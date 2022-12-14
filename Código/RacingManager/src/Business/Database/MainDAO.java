@@ -28,6 +28,8 @@ public class MainDAO {
 
             this.connection = con;
             System.out.println("Connected with database.");
+
+            this.createTables();
         } catch(SQLException e){
             System.out.println("Impossible to connect with database: " + e.getMessage());
             this.connection = null;
@@ -40,6 +42,26 @@ public class MainDAO {
         return (this.connection);
     }
 
+
+    private void createTables(){
+        //Users
+        try {
+            Statement stmt = this.connection.createStatement();
+
+            String sql_user = "CREATE TABLE `jogador` (\n" +
+                    "  `id` int(11) NOT NULL,\n" +
+                    "  `nome` varchar(255) NOT NULL,\n" +
+                    "  `password` varchar(255) NOT NULL,\n" +
+                    "  `classificacao` int(11) NOT NULL\n" +
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+            stmt.executeQuery(sql_user);
+
+
+        } catch (SQLException e) {
+            System.out.println("Error while creating: " + e.getMessage());
+        }
+
+    }
     public void endConnection() {
         if(this.connection != null) {
             try { this.connection.close();}
