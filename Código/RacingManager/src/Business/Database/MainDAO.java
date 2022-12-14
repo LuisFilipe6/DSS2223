@@ -56,6 +56,38 @@ public class MainDAO {
                     ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
             stmt.executeQuery(sql_user);
 
+            String sql_campeonato = "CREATE TABLE `campeonato` (\n" +
+                    "  `participantes` varchar(2555) NOT NULL,\n" +
+                    "  `nome` varchar(255) NOT NULL,\n" +
+                    "  `lista_corridas` varchar(255) NOT NULL,\n" +
+                    "  `pilotos` varchar(255) NOT NULL\n" +
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+            stmt.executeQuery(sql_campeonato);
+
+            String sql_carro = "CREATE TABLE `carro` (\n" +
+                    "  `id` int(11) NOT NULL,\n" +
+                    "  `tipo_carro` tinyint(1) NOT NULL,\n" +
+                    "  `marca` varchar(255) NOT NULL,\n" +
+                    "  `modelo` varchar(255) NOT NULL,\n" +
+                    "  `cilindrada` int(11) NOT NULL,\n" +
+                    "  `potencia` int(11) NOT NULL,\n" +
+                    "  `numero_voltas` int(11) NOT NULL,\n" +
+                    "  `dnf` tinyint(1) NOT NULL,\n" +
+                    "  `pneu` enum('CHUVA','MACIO','DURO') NOT NULL,\n" +
+                    "  `motor` enum('CONSERVADOR','NORMAL','AGRESSIVO') NOT NULL,\n" +
+                    "  `pac` double NOT NULL,\n" +
+                    "  `downforce` double NOT NULL\n" +
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n";
+            stmt.executeQuery(sql_carro);
+
+            String sql_piloto = "CREATE TABLE `piloto` (\n" +
+                    "  `id` int(11) NOT NULL,\n" +
+                    "  `nome` varchar(255) NOT NULL,\n" +
+                    "  `sva` double NOT NULL\n" +
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n";
+
+            stmt.executeQuery(sql_piloto);
+
 
         } catch (SQLException e) {
             System.out.println("Error while creating: " + e.getMessage());
