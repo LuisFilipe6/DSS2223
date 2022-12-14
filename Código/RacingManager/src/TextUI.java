@@ -6,6 +6,7 @@ public class TextUI {
     public TextUI(){
         String nome;
         String pw;
+        int tipo;
         int opcao;
         System.out.println("Bem vindo ao Racing Manager");
         System.out.println("Pretende entrar como \n0:utilizador\n1:convidado\n2:Admin\nOpção:");
@@ -24,7 +25,8 @@ public class TextUI {
                     "2: Ver ranking\n");
             System.out.println("Opcao:");
             opcao = Integer.parseInt(this.input.next());
-            // run(opcao);
+            tipo = 0;
+            // run(tipo, opcao);
         }
         else if (opcao == 1){
             System.out.println("Introduza o seu nome:");
@@ -35,8 +37,10 @@ public class TextUI {
                     "0: Sair\n" +
                     "1: Entrar num campeonato iniciado");
             opcao = Integer.parseInt(this.input.next());
+            tipo = 1;
             // mostrar os campeonatos iniciados
             // adcionaConvidado(nome, campeonato)
+            // run(tipo, opcao);
         }
         else if (opcao == 2){
             System.out.println("Introduza as suas credenciais;");
@@ -55,10 +59,64 @@ public class TextUI {
                     "5: Adicionar novos admins");
             System.out.println("Opcao:");
             opcao = Integer.parseInt(this.input.next());
-            // run(opcao);
+            tipo = 2;
+            // run(tipo, opcao);
         }
+        else System.out.println("Opção Invalida");
     }
-    public void run(){
+    public void run(Integer tipo, Integer opcao){
         //this.menu.run();
+        if(tipo == 0){
+            switch (opcao){
+                case 0:
+                    System.out.println("Aplicação Terminada.");
+                    break;
+                case 1:
+                    //simularCampeonato()
+                    //pedir coisas (prints)
+                case 2:
+                    // verRanking();
+            }
+        }
+        else if(tipo == 1){
+            switch (opcao){
+                case 0:
+                    System.out.println("Aplicação Terminada.");
+                    break;
+                case 1:
+                    //adicionarAoCampeonato()
+                    //pedir coisas
+            }
+        }
+        else if(tipo == 2){
+            switch (opcao){
+                case 0:
+                    System.out.println("Aplicação Terminada.");
+                    break;
+                case 1:
+                    //criarCampeonato();
+                    //pedir coisas
+                    break;
+                case 2:
+                    //criarCarro();
+                    //pedir coisas
+                    break;
+                case 3:
+                    //criarPiloto();
+                    //pedir coisas
+                    break;
+                case 4:
+                    //criarCircuito();
+                    //pedir coisas
+                    break;
+                case 5:
+                    //adicionadaAdmin();
+                    //pedir coisas
+                    break;
+                default:
+                    System.out.println("Opção Invalida");
+                    break;
+            }
+        }
     }
 }
