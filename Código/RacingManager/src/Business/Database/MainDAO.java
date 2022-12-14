@@ -88,6 +88,8 @@ public class MainDAO {
 
             stmt.executeQuery(sql_piloto);
 
+            System.out.println("Created all tables successfully !");
+
 
         } catch (SQLException e) {
             System.out.println("Error while creating: " + e.getMessage());
