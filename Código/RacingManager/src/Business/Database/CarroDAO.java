@@ -1,6 +1,7 @@
 package Business.Database;
 
 import Business.SSCampeonato.Carro;
+import Business.SSCampeonato.PC2H;
 import Business.SSCampeonato.SC;
 import Business.SSUtilizador.Jogador;
 
@@ -33,7 +34,8 @@ public class CarroDAO implements Map {
                 if(rs.getString(2).equals("SC")){
                     return new SC(marca, modelo, cilindrada, potencia);
                 }
-                String marca, String modelo, int cilindrada, int potencia, int p_mecanica, int eletrico
+                //String marca, String modelo, int cilindrada, int potencia, int p_mecanica, int eletrico
+                //criar funçao
                 if(rs.getString(2).equals("PC2H")){
                     return new PC2H(marca, modelo, cilindrada, potencia, 0, 0);
                 }

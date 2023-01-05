@@ -88,7 +88,7 @@ public class MainDAO {
 
             stmt.executeQuery(sql_piloto);
 
-            System.out.println("Created all tables successfully !");
+            System.out.println("Created all tables successfully ! ");
 
 
         } catch (SQLException e) {

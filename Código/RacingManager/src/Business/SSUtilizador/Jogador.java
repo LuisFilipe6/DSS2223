@@ -59,23 +59,7 @@ public class Jogador implements Serializable
   {
       return new Jogador(this);
   }
-  
-  /**
-   * Fazer aposta
-   */
 
-
-
-  /**
-   * atualizador de apostas
-   */
-
-  /**
-   * 
-   */
-
-
-  
   /**
    * Informacao do jogador
    */

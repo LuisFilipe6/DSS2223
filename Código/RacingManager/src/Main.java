@@ -1,6 +1,7 @@
 import Business.Database.JogadorDAO;
 import Business.Database.MainDAO;
 import Business.SSUtilizador.Jogador;
+import UI.TextUI;
 
 
 public class Main {
@@ -13,7 +14,7 @@ public class Main {
         try {
             new TextUI();
         } catch(Exception e){
-            System.out.println("Impossible to run TextUI");
+            System.out.println("Impossible to run UI.TextUI");
         }
 
         //j.remove(3);

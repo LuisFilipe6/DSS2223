@@ -1,17 +1,20 @@
+package UI;
+
 import java.util.Scanner;
 
 public class TextUI {
     private Scanner input;
 
     public TextUI(){
+        this.input = new Scanner(System.in);
         String nome;
         String pw;
         int tipo;
         int opcao;
         System.out.println("Bem vindo ao Racing Manager");
-        System.out.println("Pretende entrar como \n0:utilizador\n1:convidado\n2:Admin\nOpção:");
+        System.out.println("Pretende entrar como \n1: Jogador\n2: Convidado\n3: Admin\n0: Sair\nOpção: ");
         opcao = Integer.parseInt(this.input.next());
-        if (opcao == 0) {
+        if (opcao == 1) {
             System.out.println("Introduza as suas credenciais");
             System.out.println("Nome de utilizador:");
             nome = input.next();
@@ -28,7 +31,7 @@ public class TextUI {
             tipo = 0;
             // run(tipo, opcao);
         }
-        else if (opcao == 1){
+        else if (opcao == 2){
             System.out.println("Introduza o seu nome:");
             nome = input.next();
             // loginCovidado(nome);
@@ -42,7 +45,7 @@ public class TextUI {
             // adcionaConvidado(nome, campeonato)
             // run(tipo, opcao);
         }
-        else if (opcao == 2){
+        else if (opcao == 3){
             System.out.println("Introduza as suas credenciais;");
             System.out.println("Nome de admin:");
             nome = input.next();
