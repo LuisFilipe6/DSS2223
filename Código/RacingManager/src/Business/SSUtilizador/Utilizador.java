@@ -17,6 +17,23 @@ public abstract class Utilizador {
         this.password = password;
     }
 
+    public int getId(){
+        return this.id;
+    }
+
+    public String getNome(){
+        return this.nome;
+    }
+
+    public String getPassword(){
+        return this.password;
+    }
+
+    public void setId(int id){ this.id = id; }
+    public void setNome(String nome){ this.nome = nome; }
+    public void setPassword(String pass){ this.password = pass; }
+
+
     public abstract boolean isAdmin();
 
 }

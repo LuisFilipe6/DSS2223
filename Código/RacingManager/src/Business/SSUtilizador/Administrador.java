@@ -2,7 +2,7 @@ package Business.SSUtilizador;
 
 import java.util.Random;
 
-public class Administrador extends Jogador {
+public class Administrador extends Utilizador {
 
     public Administrador()
     {
@@ -16,7 +16,7 @@ public class Administrador extends Jogador {
 
     public Administrador(Administrador a)
     {
-        self(a.getId(), a.getNome(), a.getPassword());
+        super(a.getId(), a.getNome(), a.getPassword());
     }
     public boolean isAdmin(){
         return true;

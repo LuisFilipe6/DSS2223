@@ -69,7 +69,7 @@ public class UtilizadorDAO implements Map {
 
             if(rs.next()){
                 if(rs.getInt(4) == 1)
-                    return new Administrador(rs.getInt(1), rs.getString(2), rs.getString(3))
+                    return new Administrador(rs.getInt(1), rs.getString(2), rs.getString(3));
                 else
                     return new Jogador(rs.getInt(1), rs.getString(2), rs.getString(3));
             }

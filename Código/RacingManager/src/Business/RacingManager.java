@@ -129,10 +129,10 @@ public class RacingManager implements IRacingManager{
     public Utilizador verificaCredenciais(String username, String password) throws UtilizadorNaoEncontrado {
         Utilizador u = new UtilizadorDAO().get(username, password);
 
-        if(j == null)
+        if(u == null)
             return null;
         else
-            return new Utilizador(j);
+            return u;
 
     }
 
