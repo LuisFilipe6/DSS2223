@@ -19,6 +19,7 @@ public class TextUI {
         this.input = new Scanner(System.in);
         String nome;
         String pw;
+        Utilizador utilizadorAutenticado;
         int tipo;
         int opcao;
         System.out.println("Bem vindo ao Racing Manager");
@@ -62,26 +63,29 @@ public class TextUI {
                 System.out.println("Introduza a password:");
                 pw = input.next();
                 try {
-                    Utilizador u = rm.verificaCredenciais(nome, pw);
+                    utilizadorAutenticado = rm.verificaCredenciais(nome, pw);
                     verificado = true;
                 } catch (UtilizadorNaoEncontrado e){
                     System.out.println(e.getMessage());
                 }
-                // loginAdmin(nome,pw);
+            }
+
+            while(verificado){
+                System.out.println("Introduza a opcao que preferir:\n" +
+                        "0: Sair\n" +
+                        "1: Criar campeontato\n" +
+                        "2: Criar carro\n" +
+                        "3: Criar piloto\n" +
+                        "4: Criar circuito\n" +
+                        "5: Adicionar novos admins\n" +
+                        "6: Sair");
+                System.out.println("Opcao:");
+                opcao = Integer.parseInt(this.input.next());
+
+                run(2, opcao);
             }
 
 
-            System.out.println("Introduza a opcao que preferir:\n" +
-                    "0: Sair\n" +
-                    "1: Criar campeontato\n" +
-                    "2: Criar carro\n" +
-                    "3: Criar piloto\n" +
-                    "4: Criar circuito\n" +
-                    "5: Adicionar novos admins");
-            System.out.println("Opcao:");
-            opcao = Integer.parseInt(this.input.next());
-            tipo = 2;
-            // run(tipo, opcao);
         } else System.out.println("Opcao Invalida");
     }
 
