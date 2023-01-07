@@ -130,7 +130,7 @@ public class RacingManager implements IRacingManager{
         Utilizador u = new UtilizadorDAO().get(username, password);
 
         if(u == null)
-            return null;
+            throw new UtilizadorNaoEncontrado("Não foi possível encontrar esse utilizador.");
         else
             return u;
 

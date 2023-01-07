@@ -1,10 +1,17 @@
 package UI;
 
+import Business.RacingManager;
+import Business.SSUtilizador.Utilizador;
+import Exceptions.UtilizadorNaoEncontrado;
+
 import java.util.Scanner;
 
 public class TextUI {
-    public static void main(String[] args){
+
+    private RacingManager rm;
+    public void main(String[] args){
         new TextUI();
+        this.rm = new RacingManager();
     }
     private Scanner input;
 
@@ -47,12 +54,22 @@ public class TextUI {
             // adcionaConvidado(nome, campeonato)
             // run(tipo, opcao);
         } else if (opcao == 3) {
-            System.out.println("Introduza as suas credenciais;");
-            System.out.println("Nome de admin:");
-            nome = input.next();
-            System.out.println("Introduza a password:");
-            pw = input.next();
-            // loginAdmin(nome,pw);
+            boolean verificado = false;
+            while(!verificado){
+                System.out.println("Introduza as suas credenciais;");
+                System.out.println("Nome de admin:");
+                nome = input.next();
+                System.out.println("Introduza a password:");
+                pw = input.next();
+                try {
+                    Utilizador u = rm.verificaCredenciais(nome, pw);
+                    verificado = true;
+                } catch (UtilizadorNaoEncontrado e){
+                    System.out.println(e.getMessage());
+                }
+                // loginAdmin(nome,pw);
+            }
+
 
             System.out.println("Introduza a opcao que preferir:\n" +
                     "0: Sair\n" +
