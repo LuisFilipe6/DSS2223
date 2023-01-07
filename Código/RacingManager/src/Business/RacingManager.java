@@ -8,10 +8,7 @@ import Business.SSCampeonato.Corrida;
 import Business.SSCampeonato.Piloto;
 import Business.SSUtilizador.Jogador;
 import Business.SSUtilizador.Utilizador;
-import Exceptions.AdicionaItemError;
-import Exceptions.RemoveItemError;
-import Exceptions.SetItemFailed;
-import Exceptions.UtilizadorNaoEncontrado;
+import Exceptions.*;
 
 import java.util.List;
 import java.util.Map;
@@ -135,9 +132,12 @@ public class RacingManager implements IRacingManager{
 
         if(j == null)
             return null;
-
         else
             return new Utilizador(j);
+
+    }
+
+    public void simulaCorrida() throws ImpossivelSimularCorrida {
 
     }
 }

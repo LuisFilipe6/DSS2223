@@ -6,6 +6,8 @@ package Business.SSCampeonato;
  * @version (a version number or a date)
  */
 
+import Business.SSUtilizador.Utilizador;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
@@ -17,40 +19,59 @@ import java.io.Serializable;
 
 public class Campeonato implements Serializable
 {
-    private List<Corrida> corridas;
+    private List<Circuito> circuitos;
     private Map<String,Integer> classificacao;
-    private Map<String,Integer> classificacaoH;
-    private int prova; //incrementa a cada prova realizada (aponta para a prova a realizar)
-    
+
+    private int corridaAtual;
+
+    private Map<String, Utilizador> participantes;
+
+    private Map<String, Piloto> pilotos;
+
+    private int nAfinacoes;
+
     public Campeonato()
     {
-        this.corridas = new ArrayList<Corrida>();
-        this.classificacao = new HashMap<String,Integer>();
-        this.classificacaoH = new HashMap<String,Integer>();
-        this.prova = 0;
+        this.circuitos = new ArrayList<Circuito>();
+        this.classificacao = new HashMap<>();
+        this.corridaAtual = 0;
+        this.participantes = new HashMap<>();
+        this.pilotos = new HashMap<>();
+        this.nAfinacoes = 0;
     }
     
-    public Campeonato(List<Corrida> cor, Map<String,Integer> cla, Map<String,Integer> claH, int prova)
+    public Campeonato(List<Circuito> cor, Map<String,Utilizador> part, Map<String,Piloto> pil, int nAfinacoes,
+                      int corridaAtual, Map<String, Integer> classific)
     {
         this();
-        ArrayList<Corrida> aux = new ArrayList<Corrida>();
-        for(Corrida co : cor)
+        ArrayList<Circuito> aux = new ArrayList<Circuito>();
+        for(Circuito co : cor)
         {
             aux.add(co.clone());
         }
-        this.corridas = aux;
-        HashMap<String,Integer> aux2 = new HashMap<String,Integer>();
-        for(String c: cla.keySet())
-        {
-            aux2.put(c, cla.get(c));
+
+        Map<String, Utilizador> aux2 = new HashMap<>();
+        for(String s : part.keySet()){
+            aux2.put(s, part.get(s));
         }
-        HashMap<String,Integer> aux3 = new HashMap<String,Integer>();
-        for(String c: claH.keySet())
-        {
-            aux3.put(c, claH.get(c));
+
+        Map<String, Piloto> aux3 = new HashMap<>();
+        for(String s : pil.keySet()){
+            aux3.put(s, pil.get(s));
         }
-        this.classificacao = aux3;
-        this.prova = prova;
+
+        Map<String, Integer> aux4 = new HashMap<>();
+        for(String s : pil.keySet()){
+            aux4.put(s, classific.get(s));
+        }
+
+
+        this.circuitos = aux;
+        this.pilotos = aux3;
+        this.participantes = aux2;
+        this.classificacao = aux4;
+        this.nAfinacoes = nAfinacoes;
+        this.corridaAtual = corridaAtual;
     }
     
     public Campeonato(Campeonato c)
@@ -59,6 +80,7 @@ public class Campeonato implements Serializable
         this.classificacao = c.getClassificacao();
         this.classificacaoH = c.getClassificacaoH();
         this.prova = c.getProva();
+        //FAZER GETS e set e terminar
     }
     
     public List<Corrida> getCorridas()
