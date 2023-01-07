@@ -6,6 +6,7 @@ package Business.SSCampeonato;
  * @version (a version number or a date)
  */
 
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.io.Serializable;
@@ -14,12 +15,9 @@ public class Circuito implements Serializable
 {
     /* Variaveis instancia */
     private String nome;
-    private int distancia;
     private int voltas;
     //private long tempoMedio;
-    private Map<String,Long> temposMedios;
-    private long tempoDesvio;
-    private long tempoBox;
+    private Map<String, Double> dificuldadeCaminho;
 
     /* Construtores */
     public Circuito()

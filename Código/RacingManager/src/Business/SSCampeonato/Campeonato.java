@@ -28,6 +28,8 @@ public class Campeonato implements Serializable
 
     private Map<String, Piloto> pilotos;
 
+    private List<Carro> carros;
+
     private int nAfinacoes;
 
     public Campeonato()
@@ -38,10 +40,11 @@ public class Campeonato implements Serializable
         this.participantes = new HashMap<>();
         this.pilotos = new HashMap<>();
         this.nAfinacoes = 0;
+        this.carros = new HashMap<>();
     }
     
     public Campeonato(List<Circuito> cor, Map<String,Utilizador> part, Map<String,Piloto> pil, int nAfinacoes,
-                      int corridaAtual, Map<String, Integer> classific)
+                      int corridaAtual, Map<String, Integer> classific, Map<String, Carro> car)
     {
         this();
         ArrayList<Circuito> aux = new ArrayList<Circuito>();
@@ -65,89 +68,100 @@ public class Campeonato implements Serializable
             aux4.put(s, classific.get(s));
         }
 
+        Map<String, Carro> aux5 = new HashMap<>();
+        for(String s : car.keySet()){
+            aux5.put(s, car.get(s));
+        }
+
 
         this.circuitos = aux;
         this.pilotos = aux3;
         this.participantes = aux2;
         this.classificacao = aux4;
+        this.carros = aux5;
         this.nAfinacoes = nAfinacoes;
         this.corridaAtual = corridaAtual;
     }
     
     public Campeonato(Campeonato c)
     {
-        this.corridas = c.getCorridas();
+        this.circuitos = c.getCircuitos();
         this.classificacao = c.getClassificacao();
-        this.classificacaoH = c.getClassificacaoH();
-        this.prova = c.getProva();
-        //FAZER GETS e set e terminar
+        this.corridaAtual = c.getCorridasAtual();
+        this.participantes = c.getParticipantes();
+        this.carros = c.getCarros();
+        this.pilotos = c.getPilotos();
+        this.nAfinacoes = c.getnAfinacoes();
+    }
+
+    public List<Circuito> getCircuitos(){
+        return this.circuitos;
+    }
+
+    public Map<String,Integer> getClassificacao(){
+        return this.classificacao;
+    }
+    public int getCorridasAtual()
+    {
+        return this.corridaAtual;
+    }
+
+    public Map<String, Utilizador> getParticipantes(){
+        return this.participantes;
+    }
+
+    public Map<String, Piloto> getPilotos(){
+        return this.pilotos;
+    }
+
+    public int getnAfinacoes(){
+        return this.nAfinacoes;
+    }
+
+    public Map<String, Carro> getCarros(){ return this.carros;}
+
+    public void setCircuitos(List<Circuito> cir){
+        this.circuitos = cir;
+    }
+
+    public void setClassificacao(Map<String, Integer> c){
+        this.classificacao = c;
+    }
+
+    public void setCorridaAtual(int corridaAtual){
+        this.corridaAtual = corridaAtual;
+    }
+
+    public void setParticipantes(Map<String, Utilizador> p){
+        this.participantes = p;
+    }
+
+    public void setPilotos(Map<String, Piloto> p){
+        this.pilotos = p;
+    }
+
+    public void setnAfinacoes(int a){
+        this.nAfinacoes = a;
     }
     
-    public List<Corrida> getCorridas()
-    {
-        ArrayList<Corrida> aux = new ArrayList<Corrida>();
-        for(Corrida co : this.corridas)
-        {
-            aux.add(co.clone());
-        }
-        return aux;
-    }
-    
-    public Map<String, Integer> getClassificacao()
-    {
-        HashMap<String,Integer> aux = new HashMap<String,Integer>();
-        for(String c : this.classificacao.keySet())
-        {
-            aux.put(c, this.classificacao.get(c));
-        }
-        return aux;
-    }
-    
-    public Map<String, Integer> getClassificacaoH()
-    {
-        HashMap<String,Integer> aux = new HashMap<String,Integer>();
-        for(String c : this.classificacaoH.keySet())
-        {
-            aux.put(c, this.classificacaoH.get(c));
-        }
-        return aux;
-    }
-    
-    public int getProva()
-    {
-        return this.prova;
-    }
+
     //Metodos
     /**
      * Adicionar corrida ao campeonato
      */
-    public void addCorrida(Corrida c)
+    public void addCorrida(Circuito c)
     {
-        this.corridas.add(c.clone());
+        this.circuitos.add(c.clone());
     }
     
     /**
      * Simular proxima corrida
      */
-    public String simularProximaCorrida()
+    public void simularProximaCorrida()
     {
-        //StringBuilder sb = new StringBuilder();
-        String res;
-        if(this.corridas.size() == this.prova)
-        {
-            //sb.append("\nNÃO HÁ CORRIDAS POR REALIZAR!!!");
-            res = "\nNÃO HÁ CORRIDAS POR REALIZAR!!!";
-        }
-        else
-        {
-            this.corridas.get(this.prova).simulaCorrida();
-            //sb.append(this.corridas.get(this.prova).printResultados());
-            res = this.corridas.get(this.prova).printResultados();
-            this.prova++;
-        }
-        
-        //return sb.toString();
-        return res;
+        if(corridaAtual >= circuitos.size()) return;
+        Corrida c = new Corrida(this.carros, circuitos.get(corridaAtual));
+        simulaCorrida(c);
     }
     
     /**

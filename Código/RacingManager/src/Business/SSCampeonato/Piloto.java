@@ -11,11 +11,9 @@ import java.io.Serializable;
 public class Piloto implements Serializable
 {
     //Variaveis de instancia
+    private String id;
     private String nome;
-    private String nacionalidade;
-    private int qualidade;
-    private int qualidade_chuva;
-    private int palmares;
+    private Double sva;
     
     //Construtores
     public Piloto()

@@ -24,10 +24,10 @@ public class Corrida implements Serializable
    private Circuito circuito;
    private Set<Carro> resultados;
    //private Map<Business.Carros.Carro,Long> bestLap;
-   private List<Carro> primeiroVolta;
+   private List<Carro> primeiro_da_Volta;
    private Map<Carro, Integer> dnf;
    private int clima; //1-chove 0-sol
-   
+
    //Construtores
    public Corrida()
    {
@@ -35,7 +35,7 @@ public class Corrida implements Serializable
        this.circuito = new Circuito();
        this.resultados = new TreeSet<Carro>();
        //this.bestLap = new HashMap<Business.Carros.Carro,Long>();
-       this.primeiroVolta = new ArrayList<Carro>();
+       this.primeiro_da_Volta = new ArrayList<Carro>();
        this.dnf = new HashMap<Carro,Integer>();
        Random rand=new Random();
        int x=rand.nextInt(2);
@@ -43,33 +43,27 @@ public class Corrida implements Serializable
    }
    
    
-   public Corrida(List<Carro> l, Circuito c, Set<Carro> r, List<Carro> p, int clima)
+   public Corrida(List<Carro> l, Circuito c)
    {
        this();
        for(Carro car: l)
        {
            this.listaCarros.add(car);
+           this.resultados.add(car.clone());
+           this.primeiro_da_Volta.add(car.clone());
        }
        this.circuito = c.clone();
-       for(Carro car: r)
-       {
-           this.resultados.add(car.clone());
-       }
-       for(Carro x : p)
-       {
-           this.primeiroVolta.add(x.clone());
-       }
-       this.clima = clima;
+       //this.clima = clima;
    }
-   
-  
-   
+
+
+
    public Corrida(Corrida c)
    {
        this.listaCarros = c.getCarros();
        this.circuito = c.getCircuito();
        this.resultados = c.getResultados();
-       this.primeiroVolta = c.getPrimeiroVolta();
+       this.primeiro_da_Volta = c.getPrimeiroVolta();
        this.dnf = c.getDNF();
        this.clima = c.getClima();
    }
