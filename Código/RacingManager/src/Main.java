@@ -9,7 +9,6 @@ public class Main {
         MainDAO dao = new MainDAO("localhost", "root", "", "racingmanager", 3306);
         JogadorDAO j = new JogadorDAO(dao.getConnection());
         Jogador jog = j.get(2);
-        j.put("Rita1", "passw@rd");
 
         try {
             new TextUI();

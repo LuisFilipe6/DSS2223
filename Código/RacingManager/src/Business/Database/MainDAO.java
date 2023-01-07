@@ -9,13 +9,7 @@ public class MainDAO {
 
     private Connection connection;
 
-    public MainDAO(String host, String username, String password, String bd, int port){
-        this.hostname = host;
-        this.username = username;
-        this.password = password;
-        this.bd = bd;
-        this.port = port;
-
+    public MainDAO(){
         //Open database connection
         this.openConnection();
     }
@@ -24,7 +18,7 @@ public class MainDAO {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con= DriverManager.getConnection(
-                    "jdbc:mysql://"+ this.hostname +":" + this.port + "/" + this.bd,this.username, this.password);
+                    DAOConfig.URL,this.username, this.password);
 
             this.connection = con;
             System.out.println("Connected with database.");

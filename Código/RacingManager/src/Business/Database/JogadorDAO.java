@@ -13,8 +13,8 @@ public class JogadorDAO implements Map {
 
     private Connection con;
 
-    public JogadorDAO(Connection con){
-        this.con = con;
+    public JogadorDAO(){
+        this.con = new MainDAO().getConnection();
     }
 
     public Jogador get(int id){
@@ -42,6 +42,27 @@ public class JogadorDAO implements Map {
         try {
             PreparedStatement select = this.con.prepareStatement(sql);
             select.setString(1, nome);
+            ResultSet rs = select.executeQuery();
+
+            if(rs.next())
+                return new Jogador(rs.getInt(1), rs.getString(2), rs.getString(3));
+
+
+        } catch (SQLException e){
+            System.out.println("Impossible to find user with nome = " + nome + ": " + e.getMessage());
+            return null;
+        }
+
+
+        return null;
+    }
+
+    public Jogador get(String nome, String password){
+        String sql = "SELECT * FROM jogador WHERE nome = ? AND password = ? ";
+        try {
+            PreparedStatement select = this.con.prepareStatement(sql);
+            select.setString(1, nome);
+            select.setString(2, password);
             ResultSet rs = select.executeQuery();
 
             if(rs.next())
