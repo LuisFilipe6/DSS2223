@@ -15,8 +15,8 @@ public class CarroDAO implements Map {
 
     private Connection con;
 
-    public CarroDAO(Connection con){
-        this.con = con;
+    public CarroDAO(){
+        this.con = new MainDAO().getConnection();
     }
 
     public Carro get(int id){

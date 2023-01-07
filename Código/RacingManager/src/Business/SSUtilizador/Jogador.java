@@ -11,7 +11,7 @@ import Business.SSCampeonato.Carro;
 import java.util.*;
 import java.io.Serializable;
 
-public class Jogador implements Serializable
+public class Jogador extends Utilizador implements Serializable
 {
   private String nome;
   private String password;
@@ -19,6 +19,7 @@ public class Jogador implements Serializable
   
   public Jogador()
   {
+      super();
       this.id = new Random().nextInt(10000);
       this.nome = "";
       this.password = "";
@@ -54,6 +55,10 @@ public class Jogador implements Serializable
     return this.id;
   }
   
+
+  public boolean isAdmin(){
+      return false;
+  }
 
   public Jogador clone()
   {

@@ -1,19 +1,21 @@
 package Business.Database;
 
+import Business.SSUtilizador.Administrador;
 import Business.SSUtilizador.Jogador;
+import Business.SSUtilizador.Utilizador;
+import jdk.jshell.execution.Util;
 
 import java.sql.*;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 
-public class JogadorDAO implements Map {
+public class UtilizadorDAO implements Map {
 
     private Connection con;
 
-    public JogadorDAO(){
+    public UtilizadorDAO(){
         this.con = new MainDAO().getConnection();
     }
 
@@ -57,7 +59,7 @@ public class JogadorDAO implements Map {
         return null;
     }
 
-    public Jogador get(String nome, String password){
+    public Utilizador get(String nome, String password){
         String sql = "SELECT * FROM jogador WHERE nome = ? AND password = ? ";
         try {
             PreparedStatement select = this.con.prepareStatement(sql);
@@ -65,8 +67,12 @@ public class JogadorDAO implements Map {
             select.setString(2, password);
             ResultSet rs = select.executeQuery();
 
-            if(rs.next())
-                return new Jogador(rs.getInt(1), rs.getString(2), rs.getString(3));
+            if(rs.next()){
+                if(rs.getInt(4) == 1)
+                    return new Administrador(rs.getInt(1), rs.getString(2), rs.getString(3))
+                else
+                    return new Jogador(rs.getInt(1), rs.getString(2), rs.getString(3));
+            }
 
 
         } catch (SQLException e){
@@ -77,13 +83,13 @@ public class JogadorDAO implements Map {
 
         return null;
     }
-    public int put(String nome, String password){
+    public int put(String nome, String password, int admin){
         if(this.get(nome) != null){
             return -1; // VERIFICAR NA AULA
         }
 
-        String sql = "INSERT INTO jogador (`nome`, `password`)" +
-                "                      VALUES (?, ?)";
+        String sql = "INSERT INTO jogador (`nome`, `password`, `admin`)" +
+                "                      VALUES (?, ?, ?)";
         try {
             PreparedStatement insert = this.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             insert.setString(1, nome);

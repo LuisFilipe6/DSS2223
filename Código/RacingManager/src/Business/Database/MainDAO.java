@@ -90,6 +90,8 @@ public class MainDAO {
         }
 
     }
+
+    public Instance
     public void endConnection() {
         if(this.connection != null) {
             try { this.connection.close();}

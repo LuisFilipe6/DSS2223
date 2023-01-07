@@ -1,12 +1,11 @@
 package Business;
 
-import Business.Database.JogadorDAO;
+import Business.Database.UtilizadorDAO;
 import Business.Database.MainDAO;
 import Business.SSCampeonato.Campeonato;
 import Business.SSCampeonato.Carro;
 import Business.SSCampeonato.Corrida;
 import Business.SSCampeonato.Piloto;
-import Business.SSUtilizador.Jogador;
 import Business.SSUtilizador.Utilizador;
 import Exceptions.*;
 
@@ -128,7 +127,7 @@ public class RacingManager implements IRacingManager{
 
     @Override
     public Utilizador verificaCredenciais(String username, String password) throws UtilizadorNaoEncontrado {
-        Jogador j = new JogadorDAO().get(username, password);
+        Utilizador u = new UtilizadorDAO().get(username, password);
 
         if(j == null)
             return null;
