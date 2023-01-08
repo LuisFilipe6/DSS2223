@@ -178,18 +178,8 @@ public abstract class Carro implements Comparable<Carro>,Serializable
                 this.cilindrada == c.getCilindrada() &&
                 this.potencia == c.getPotencia() &&
                 this.fiabilidade == c.getFiabilidade() &&
-                this.tempo == c.getTempo() &&
+                this.pac == c.getPac() &&
+                this.downforce == c.getDownforce() &&
                 this.dnf == c.getDNF());
     }
-    
-    public int compareTo(Carro c)
-    {
-        if(this.tempo < c.getTempo())
-            return -1;
-        if(this.tempo > c.getTempo())
-            return 1;
-        else 
-            return 0;
-    }
-
 }
