@@ -18,90 +18,50 @@ public class Piloto implements Serializable
     //Construtores
     public Piloto()
     {
+        this.id = "";
         this.nome = "";
-        this.nacionalidade = "";
-        this.qualidade = 0;
-        this.qualidade_chuva = 0;
-        this.palmares = 0;
+        this.sva = 0.0;
     }
     
-    public Piloto(String nome, String nacionalidade, int qual, int qual_chuva, int palmares)
+    public Piloto(String i, String name, Double s)
     {
-        this.nome = nome;
-        this.nacionalidade = nacionalidade;
-        this.qualidade = qual;
-        this.qualidade_chuva = qual_chuva;
-        this.palmares = palmares;
+        this.id = i;
+        this.nome = name;
+        this.sva = s;
     }
     
     public Piloto(Piloto p)
     {
+        this.id = p.getId();
         this.nome = p.getNome();
-        this.nacionalidade = p.getNacionalidade();
-        this.qualidade = p.getQualidade();
-        this.qualidade_chuva = p.getQualidadeChuva();
+        this.sva = p.getSva();
     }
     
     //Gets e Sets
+
+    public String getId(){ return this.id; }
     public String getNome()
     {
         return this.nome;
     }
-    
-    public String getNacionalidade()
-    {
-        return this.nacionalidade;
-    }
-    
-    public int getQualidade()
-    {
-        return this.qualidade;
-    }
-    
-    public int getQualidadeChuva()
-    {
-        return this.qualidade_chuva;
-    }
-    
-    public int getPalmares()
-    {
-        return this.palmares;
-    }
-    
+
+    public Double getSva(){ return this.sva; }
+
+    public void setId(String i){ this.id = i; }
     public void setNome(String nome)
     {
         this.nome = nome;
     }
-    
-    public void setNacionalidade(String nacionalidade)
-    {
-        this.nacionalidade = nacionalidade;
-    }
-    
-    public void setQualidade(int q)
-    {
-        this.qualidade = q;
-    }
-    
-    public void setQualidadeChuva(int q)
-    {
-        this.qualidade_chuva = q;
-    }
-    
-    public void setPalmares(int p)
-    {
-        this.palmares = p;
-    }
-    
+
+    public void setSva(Double s) { this.sva = s; }
     //Metodos usuais
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
+        sb.append("\nId: "); sb.append(this.id);
         sb.append("\nNome: "); sb.append(this.nome);
-        sb.append("\tNacionalidade: ");sb.append(this.nacionalidade);
-        sb.append("\tQualidade: ");sb.append(this.qualidade);
-        sb.append("\tQualidade á chuva: ");sb.append(this.qualidade_chuva);
-        sb.append("\tPalmares: ");sb.append(this.palmares);
+        String n = Double.toString(this.sva);
+        sb.append("\nSva: "); sb.append(n);
         return sb.toString();
     }
     
@@ -119,10 +79,8 @@ public class Piloto implements Serializable
         return false;
         
         Piloto p = (Piloto) o;
-        return (this.nome.equals(p.getNome()) && 
-                this.nacionalidade.equals(p.getNacionalidade()) &&
-                this.qualidade==p.getQualidade() &&
-                this.qualidade_chuva==p.getQualidadeChuva() &&
-                this.palmares == p.getPalmares());
+        return (this.id.equals(p.getId()) &&
+                this.nome==p.getNome() &&
+                this.sva==p.getSva());
     }
 }

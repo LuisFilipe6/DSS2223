@@ -171,47 +171,5 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         else 
             return 0;
     }
-    
-    //Outros metodos
-    /**
-     * Tempo em milisegundos de uma volta
-     */
-    public long tempoProximaVolta(Circuito c, int clima, int volta)
-    {
-        Map<String,Long> aux = c.getTemposMedios();
-        long t_medio = aux.get(this.getClass().getName());
-        long t_chuva = c.getTempoDesvio();
-        long minimum = 0;
-        long maximum = 5000;
-        long fator_sorte = minimum + Double.valueOf(Math.random()*(maximum-minimum)).intValue();
-        long maximum_chuva = 2000;
-        long fator_sorte_chuva= minimum + Double.valueOf(Math.random()*(maximum_chuva-minimum)).intValue();
-        /** FAZER
-        if(volta<(c.getVoltas()/2))
-        {
 
-            return (t_medio + ((this.getCilindrada()/this.getPotencia())-p1.getQualidade())*1000) - fator_sorte 
-                    + (clima*(t_chuva - p1.getQualidadeChuva()*1000)) - fator_sorte_chuva;
-        }
-        else
-        {   
-            if(volta == (c.getVoltas()/2))
-            {
-                return (t_medio + ((this.getCilindrada()/this.getPotencia())-p2.getQualidade())*1000) - fator_sorte 
-                    + (clima*(t_chuva - p2.getQualidadeChuva()*1000)) - fator_sorte_chuva + c.getTempoBox();
-            }
-            else
-            return (t_medio + ((this.getCilindrada()/this.getPotencia())-p2.getQualidade())*1000) - fator_sorte 
-                    + (clima*(t_chuva - p2.getQualidadeChuva()*1000)) - fator_sorte_chuva;
-        }
-
-         **/
-        return 0;
-    }
-    
-    /**
-     * define se o carro desiste (true desiste, false continua em prova)
-     */
-    public abstract boolean DNF(int volta,int totalvoltas,int clima);
-    
 }
