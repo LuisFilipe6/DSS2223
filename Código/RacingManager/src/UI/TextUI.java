@@ -1,10 +1,9 @@
 package UI;
 
 import Business.RacingManager;
-import Business.SSCampeonato.Campeonato;
-import Business.SSCampeonato.Carro;
-import Business.SSCampeonato.Piloto;
+import Business.SSCampeonato.*;
 import Business.SSUtilizador.Utilizador;
+import Exceptions.CampeonatoNaoExistente;
 import Exceptions.UtilizadorNaoEncontrado;
 
 import java.util.*;
@@ -50,7 +49,6 @@ public class TextUI {
         } else if (opcao == 2) {
             System.out.println("Introduza o seu nome:");
             nome = input.next();
-            // loginCovidado(nome);
 
             System.out.println("Introduza a opcao que preferir\n" +
                     "0: Sair\n" +
@@ -95,11 +93,12 @@ public class TextUI {
         } else System.out.println("Opcao Invalida");
     }
 
-    public void run(Integer tipo, Integer opcao) {
+    public void run(Integer tipo, Integer opcao) throws CampeonatoNaoExistente {
         // tipo=0 -> jogador deu login e escolheu alguma coisa
         // tipo=1 -> convidado escolheu o campeonato
         // topo=2 -> admin deu login e escolheu alguma coisa
         //this.menu.run();
+        this.rm = new RacingManager();
         int op;
         if (tipo == 0) {
             switch (opcao) {
@@ -108,18 +107,17 @@ public class TextUI {
                     break;
                 case 1:
                     //simularCampeonato()
-                    System.out.println("Seleciona um dos seguintes campeonatos\n" +
+                    System.out.println("Seleciona um dos seguintes campeonatos, indique o nome\n" +
                             "Opcao: ");
-                    // dar print aos campeonatos
-                    op = Integer.parseInt(this.input.next());
+                    rm.getCampeonatos().toString();
+                    String nome2 = input.next();
                     System.out.println("Selecione o seu piloto: ");
-                    // dar print aos pilotos
+                    rm.getPilotos().toString();
                     String piloto = input.next();
                     System.out.println("Selecione o seu carro: ");
                     String carro = input.next();
-                    // dar print aos carros
-                    // MUDAR ISTO
-                    Campeonato c = new Campeonato();
+                    rm.getCarros().toString();
+                    Campeonato c = rm.getCampeonato(nome2);
                     c.simularCampeonato();
                 case 2:
                     // verRanking();
@@ -187,11 +185,29 @@ public class TextUI {
                     break;
                 case 3:
                     //criarPiloto();
-                    //pedir coisas
+                    System.out.println("Introduza o nome do piloto: ");
+                    String nome = input.next();
+                    System.out.println("Introduza a segurança vs agressividade (0-1): ");
+                    Float sva = Float.parseFloat(input.next());
                     break;
                 case 4:
                     //criarCircuito();
-                    //pedir coisas
+                    System.out.println("Introduza o nome do circuito: ");
+                    String nome1 = input.next();
+                    System.out.println("Introduza o numero de voltas: ");
+                    int voltas = Integer.parseInt(input.next());
+                    System.out.println("Introduza o tamanho do caminho: ");
+                    int tamanho = Integer.parseInt(input.next());
+                    List<Terreno> caminho = new ArrayList<>();
+                    for(int i=0; i<tamanho; i++){
+                        System.out.println("Introduza uma das seguintes opcoes (reta, curva, chincane): ");
+                        String tipo1 = input.next();
+                        System.out.println("Introduza a dificuldade desse terreno: ");
+                        int dif = Integer.parseInt(input.next());
+                        Terreno t = new Terreno(tipo1,dif);
+                        caminho.add(t);
+                    }
+                    Circuito c = new Circuito(nome1, voltas,)
                     break;
                 case 5:
                     //adicionadaAdmin();
