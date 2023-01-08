@@ -18,9 +18,9 @@ public class PC1H extends PC1 implements Hibrido
        this.motor_eletrico = 0;
     }
     
-    public PC1H(String marca, String modelo, int cilindrada, int potencia, int eletrico)
+    public PC1H(String marca, String modelo, int cilindrada, int potencia, int eletrico, int fia, double pac, double df)
     {
-        super(marca,modelo,cilindrada,potencia);
+        super(marca,modelo,cilindrada,potencia,fia,pac,df);
         this.motor_eletrico = eletrico;
     }
     

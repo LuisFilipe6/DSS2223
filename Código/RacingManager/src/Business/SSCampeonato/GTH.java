@@ -18,9 +18,9 @@ public class GTH extends GT implements Hibrido
         this.motor_eletrico = 0;
     }
     
-    public GTH(String marca, String modelo, int cilindrada, int potencia, int eletrico)
+    public GTH(String marca, String modelo, int cilindrada, int potencia, int eletrico, int fiabilidade, double pac, double downforce)
     {
-        super(marca,modelo,cilindrada,potencia);
+        super(marca,modelo,cilindrada,potencia,fiabilidade, pac, downforce);
         this.motor_eletrico = eletrico;
     }
     

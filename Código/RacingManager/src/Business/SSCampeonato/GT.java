@@ -16,9 +16,9 @@ public class GT extends Carro
         super();
     }
     
-    public GT(String marca, String modelo, int cilindrada, int potencia)
+    public GT(String marca, String modelo, int cilindrada, int potencia, int fiabilidade, double pac, double df)
     {
-        super(marca,modelo,cilindrada,potencia, 0);
+        super(marca,modelo,cilindrada,potencia, fiabilidade, pac, df);
     }
     
     public GT(GT p)
@@ -53,5 +53,10 @@ public class GT extends Carro
         
         GT c = (GT) o;
         return ( super.equals(c));
+    }
+
+    @Override
+    public int compareTo(Carro o) {
+        return 0;
     }
 }

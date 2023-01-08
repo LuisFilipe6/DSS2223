@@ -15,9 +15,9 @@ public class PC1 extends Carro
         super();
     }
     
-    public PC1(String marca, String modelo, int cilindrada, int potencia)
+    public PC1(String marca, String modelo, int cilindrada, int potencia, double pac, double df)
     {
-        super(marca,modelo,cilindrada,potencia,85);
+        super(marca,modelo,cilindrada,potencia,85, pac, df);
     }
     
     public PC1(PC1 p)
@@ -48,5 +48,10 @@ public class PC1 extends Carro
         
         PC1 c = (PC1) o;
         return ( super.equals(c));
+    }
+
+    @Override
+    public int compareTo(Carro o) {
+        return 0;
     }
 }
