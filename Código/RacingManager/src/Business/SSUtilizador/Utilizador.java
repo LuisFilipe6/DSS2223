@@ -4,35 +4,21 @@ import java.util.Random;
 
 public abstract class Utilizador {
 
-    private int id;
-    private String nome;
-    private String password;
+    private String id;
 
     public Utilizador(){
-        this(new Random().nextInt(10000), "", "");
+        this("#" + new Random().nextInt(10000));
     }
-    public Utilizador(int id, String nome, String password){
+    public Utilizador(String id){
         this.id = id;
-        this.nome = nome;
-        this.password = password;
     }
 
-    public int getId(){
+    public String getId(){
         return this.id;
     }
 
-    public String getNome(){
-        return this.nome;
-    }
 
-    public String getPassword(){
-        return this.password;
-    }
-
-    public void setId(int id){ this.id = id; }
-    public void setNome(String nome){ this.nome = nome; }
-    public void setPassword(String pass){ this.password = pass; }
-
+    public void setId(String id){ this.id = id; }
 
     public abstract boolean isAdmin();
 

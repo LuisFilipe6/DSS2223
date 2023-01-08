@@ -11,15 +11,14 @@ import Business.SSCampeonato.Carro;
 import java.util.*;
 import java.io.Serializable;
 
-public class Jogador extends Utilizador implements Serializable
+public class Jogador implements Serializable
 {
   private String nome;
   private String password;
   private int id;
-  
+
   public Jogador()
   {
-      super();
       this.id = new Random().nextInt(10000);
       this.nome = "";
       this.password = "";
@@ -56,14 +55,26 @@ public class Jogador extends Utilizador implements Serializable
   }
   
 
-  public boolean isAdmin(){
-      return false;
-  }
-
   public Jogador clone()
   {
       return new Jogador(this);
   }
+
+  /**
+   * Fazer aposta
+   */
+
+
+
+  /**
+   * atualizador de apostas
+   */
+
+  /**
+   *
+   */
+
+
 
   /**
    * Informacao do jogador
