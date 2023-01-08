@@ -3,7 +3,6 @@ package Business.Database;
 import Business.SSUtilizador.Administrador;
 import Business.SSUtilizador.Jogador;
 import Business.SSUtilizador.Utilizador;
-import jdk.jshell.execution.Util;
 
 import java.sql.*;
 import java.util.Collection;
@@ -13,23 +12,23 @@ import java.util.Set;
 
 public class UtilizadorDAO implements Map {
 
-    private Connection con;
-
     public static UtilizadorDAO singleton;
 
     public UtilizadorDAO(){
-        this.con = new MainDAO().getConnection();
+
     }
 
-    public static void buildInstance(){
+    public static UtilizadorDAO buildInstance(){
         if(UtilizadorDAO.singleton == null)
-            UtilizadorDAO.singleton = new UtilizadorDAO();  
+            UtilizadorDAO.singleton = new UtilizadorDAO();
+        return UtilizadorDAO.singleton;
     }
 
     public Jogador get(int id){
         String sql = "SELECT * FROM jogador WHERE id = ? ";
         try {
-            PreparedStatement select = this.con.prepareStatement(sql);
+            Connection con = DAOConfig.getConnection();
+            PreparedStatement select = con.prepareStatement(sql);
             select.setInt(1, id);
             ResultSet rs = select.executeQuery();
 
@@ -49,7 +48,8 @@ public class UtilizadorDAO implements Map {
     public Jogador get(String nome){
         String sql = "SELECT * FROM jogador WHERE nome = ? ";
         try {
-            PreparedStatement select = this.con.prepareStatement(sql);
+            Connection con = DAOConfig.getConnection();
+            PreparedStatement select = con.prepareStatement(sql);
             select.setString(1, nome);
             ResultSet rs = select.executeQuery();
 
@@ -69,14 +69,15 @@ public class UtilizadorDAO implements Map {
     public Utilizador get(String nome, String password){
         String sql = "SELECT * FROM jogador WHERE nome = ? AND password = ? ";
         try {
-            PreparedStatement select = this.con.prepareStatement(sql);
+            Connection con = DAOConfig.getConnection();
+            PreparedStatement select = con.prepareStatement(sql);
             select.setString(1, nome);
             select.setString(2, password);
             ResultSet rs = select.executeQuery();
 
             if(rs.next()){
                 if(rs.getInt(4) == 1)
-                    return new Administrador(rs.getInt(1), rs.getString(2), rs.getString(3));
+                    return new Administrador(rs.getString(1), rs.getString(2), rs.getString(3));
                 else
                     return new Jogador(rs.getInt(1), rs.getString(2), rs.getString(3));
             }
@@ -98,7 +99,8 @@ public class UtilizadorDAO implements Map {
         String sql = "INSERT INTO jogador (`nome`, `password`, `admin`)" +
                 "                      VALUES (?, ?, ?)";
         try {
-            PreparedStatement insert = this.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            Connection con = DAOConfig.getConnection();
+            PreparedStatement insert = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             insert.setString(1, nome);
             insert.setString(2, password);
             int error = insert.executeUpdate();
@@ -126,7 +128,8 @@ public class UtilizadorDAO implements Map {
         int size = 0;
         String query = "SELECT count(*)  from jogador";
         try {
-            PreparedStatement preparedStmt = this.con.prepareStatement(query);
+            Connection con = DAOConfig.getConnection();
+            PreparedStatement preparedStmt = con.prepareStatement(query);
 
             ResultSet rs = preparedStmt.executeQuery();
 
@@ -175,7 +178,8 @@ public class UtilizadorDAO implements Map {
         if(!(key instanceof Integer)) return null;
         String query = "DELETE from jogador WHERE id = ?";
         try {
-            PreparedStatement preparedStmt = this.con.prepareStatement(query);
+            Connection con = DAOConfig.getConnection();
+            PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, (Integer) key);
 
             if(preparedStmt.execute())

@@ -13,12 +13,10 @@ import java.util.Set;
 
 public class CarroDAO implements Map {
 
-    private Connection con;
-
     private static CarroDAO singleton = null;
 
     public CarroDAO(){
-        this.con = new MainDAO().getConnection();
+
     }
 
     public static void buildInstance(){
@@ -27,9 +25,11 @@ public class CarroDAO implements Map {
     }
 
     public Carro get(int id){
+
         String sql = "SELECT * FROM carros WHERE id= ? ";
         try {
-            PreparedStatement select = this.con.prepareStatement(sql);
+            Connection con = DAOConfig.getConnection();
+            PreparedStatement select = con.prepareStatement(sql);
             select.setInt(1, id);
             ResultSet rs = select.executeQuery();
 
@@ -43,13 +43,15 @@ public class CarroDAO implements Map {
                 }
                 //String marca, String modelo, int cilindrada, int potencia, int p_mecanica, int eletrico
                 //criar funçao
-                if(rs.getString(2).equals("PC2H")){
+                String func = rs.getString(2);
+                con.close();
+                if(func.equals("PC2H")){
                     return new PC2H(marca, modelo, cilindrada, potencia, 0, 0);
                 }
-                if(rs.getString(2).equals("SC")){
+                if(func.equals("SC")){
                     return new SC(marca, modelo, cilindrada, potencia);
                 }
-                if(rs.getString(2).equals("SC")){
+                if(func.equals("SC")){
                     return new SC(marca, modelo, cilindrada, potencia);
                 }
 
@@ -69,7 +71,8 @@ public class CarroDAO implements Map {
     public Jogador get(String nome){
         String sql = "SELECT * FROM jogador WHERE nome = ? ";
         try {
-            PreparedStatement select = this.con.prepareStatement(sql);
+            Connection con  = DAOConfig.getConnection();
+            PreparedStatement select = con.prepareStatement(sql);
             select.setString(1, nome);
             ResultSet rs = select.executeQuery();
 
@@ -93,7 +96,8 @@ public class CarroDAO implements Map {
         String sql = "INSERT INTO jogador (`nome`, `password`)" +
                 "                      VALUES (?, ?)";
         try {
-            PreparedStatement insert = this.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            Connection con = DAOConfig.getConnection();
+            PreparedStatement insert = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             insert.setString(1, nome);
             insert.setString(2, password);
             int error = insert.executeUpdate();
@@ -121,7 +125,8 @@ public class CarroDAO implements Map {
         int size = 0;
         String query = "SELECT count(*)  from jogador";
         try {
-            PreparedStatement preparedStmt = this.con.prepareStatement(query);
+            Connection con = DAOConfig.getConnection();
+            PreparedStatement preparedStmt = con.prepareStatement(query);
 
             ResultSet rs = preparedStmt.executeQuery();
 
@@ -170,7 +175,8 @@ public class CarroDAO implements Map {
         if(!(key instanceof Integer)) return null;
         String query = "DELETE from jogador WHERE id = ?";
         try {
-            PreparedStatement preparedStmt = this.con.prepareStatement(query);
+            Connection con = DAOConfig.getConnection();
+            PreparedStatement preparedStmt = con.prepareStatement(query);
             preparedStmt.setInt(1, (Integer) key);
 
             if(preparedStmt.execute())

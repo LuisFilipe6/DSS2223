@@ -161,7 +161,7 @@ public class TextUI {
                     Map<String, Piloto> pilotos = Collections.emptyMap();
                     List<Carro> carro = Collections.emptyList();
                     int nafinacoes = nCir*(2/3);
-                    Campeonato camp = new Campeonato(,classificacao,participantes,pilotos,carro,nafinacoes);
+                    //Campeonato camp = new Campeonato(,classificacao,participantes,pilotos,carro,nafinacoes);
                     break;
                 case 2:
                     //criarCarro();

@@ -1,7 +1,6 @@
 package Business;
 
 import Business.Database.UtilizadorDAO;
-import Business.Database.MainDAO;
 import Business.SSCampeonato.Campeonato;
 import Business.SSCampeonato.Carro;
 import Business.SSCampeonato.Corrida;
@@ -14,19 +13,18 @@ import java.util.Map;
 
 public class RacingManager implements IRacingManager{
 
-    private Map<Integer, Utilizador> utilizadores;
+    private Map<String, Utilizador> utilizadores;
     private Map<Integer, Carro> carros;
     private List<Campeonato> campeonatos;
     private List<Corrida> corridas;
     private List<Piloto> pilotos;
 
-    private MainDAO mainDAO;
 
     public RacingManager(){
-        this.mainDAO = new MainDAO();
+
     }
     @Override
-    public Map<Integer, Utilizador> getUtilizadores() {
+    public Map<String, Utilizador> getUtilizadores() {
         return this.utilizadores;
     }
 
@@ -51,7 +49,7 @@ public class RacingManager implements IRacingManager{
     }
 
     @Override
-    public void setUtilizadores(Map<Integer, Utilizador> u) throws SetItemFailed {
+    public void setUtilizadores(Map<String, Utilizador> u) throws SetItemFailed {
         this.utilizadores = u;
     }
 
