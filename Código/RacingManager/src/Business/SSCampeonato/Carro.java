@@ -35,7 +35,7 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         this.dnf = false;
     }
     
-    public Carro(int id, String marca, String modelo, int cilindrada, int potencia, int fiabilidade)
+    public Carro(String marca, String modelo, int cilindrada, int potencia, int fiabilidade)
     {
         this.id = id;
         this.marca = marca;
@@ -49,7 +49,7 @@ public abstract class Carro implements Comparable<Carro>,Serializable
     
     public Carro(Carro c)
     {
-        this.id = c.getId();
+       this.id = new Random().nextInt(1000000);
        this.marca = c.getMarca();
        this.modelo = c.getModelo();
        this.cilindrada = c.getCilindrada();
@@ -143,7 +143,8 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         sb.append("\nDNF: ");sb.append(this.dnf);
         return sb.toString();
     }
-    
+
+    public abstract boolean DNF(int volta,int totalvoltas,int clima);
     public boolean equals(Object o)
     {
         if(this==o)

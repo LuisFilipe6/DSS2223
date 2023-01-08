@@ -65,6 +65,7 @@ public class Piloto implements Serializable
         return sb.toString();
     }
     
+    
     public Piloto clone()
     {
         return new Piloto(this);
@@ -82,5 +83,13 @@ public class Piloto implements Serializable
         return (this.id.equals(p.getId()) &&
                 this.nome==p.getNome() &&
                 this.sva==p.getSva());
+    }
+
+    public int getQualidadeChuva() {
+        return 1;
+    }
+
+    public int getQualidade() {
+        return 1;
     }
 }

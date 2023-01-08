@@ -76,6 +76,17 @@ public class Circuito implements Serializable
         this.voltas = v;
     }
 
+    public int getNum(String tipo){
+        int soma = 0;
+        for(Terreno t : this.getCaminho()) {
+            if(t.getTipo().equals(tipo)){
+                soma++;
+            }
+        }
+
+        return soma;
+    }
+
     public void setDificuldadeCaminho(List<Terreno> t)
     {
         this.caminho = t;
