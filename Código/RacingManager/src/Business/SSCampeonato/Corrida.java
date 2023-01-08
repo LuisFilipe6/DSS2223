@@ -6,6 +6,8 @@ package Business.SSCampeonato;
  * @version (a version number or a date)
  */
 
+import Business.Database.CircuitoDAO;
+
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import java.io.Serializable;
 public class Corrida implements Serializable
 {
    //variaveis de instancia
+    private String id_Corrida;
    private List<Carro> listaCarros;
    private Circuito circuito;
    private Set<Carro> resultados;
@@ -31,6 +34,7 @@ public class Corrida implements Serializable
    //Construtores
    public Corrida()
    {
+       this.id_Corrida = "#" + Math.random();
        this.listaCarros = new ArrayList<Carro>();
        this.circuito = new Circuito();
        this.resultados = new TreeSet<Carro>();
@@ -60,6 +64,7 @@ public class Corrida implements Serializable
 
    public Corrida(Corrida c)
    {
+       this.id_Corrida = c.id_Corrida;
        this.listaCarros = c.getCarros();
        this.circuito = c.getCircuito();
        this.resultados = c.getResultados();
@@ -233,5 +238,11 @@ public class Corrida implements Serializable
     /**
      * Metodo auxiliar privado para determinar o carro que vai em 1o a cada volta
      */
+
+    public List<String> simularCorrida() {
+        Circuito c = CircuitoDAO.buildInstance().get(this.circuito);
+        int nvoltas = c.getNvoltas();
+        int nretas = c.getRetas();
+    }
 
 }

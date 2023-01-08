@@ -82,6 +82,21 @@ public class MainDAO {
 
             stmt.executeQuery(sql_piloto);
 
+            String sql_circuito = "CREATE TABLE `circuito` (\n" +
+                    "  `id` varchar(50) NOT NULL,\n" +
+                    "  `chicane` int(11) NOT NULL,\n" +
+                    "  `retas` int(11) NOT NULL,\n" +
+                    "  `curvas` int(11) NOT NULL,\n" +
+                    "  `distancia` int(11) NOT NULL,\n" +
+                    "  `voltas` int(11) NOT NULL,\n" +
+                    "  `record` double NOT NULL,\n" +
+                    "  `tempo_medio` double NOT NULL,\n" +
+                    "  `dificuldades_curvas` varchar(2555) NOT NULL,\n" +
+                    "  `dificuldade_retas` varchar(2555) NOT NULL\n" +
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+
+            stmt.executeQuery(sql_circuito);
+
             System.out.println("Created all tables successfully ! ");
 
 

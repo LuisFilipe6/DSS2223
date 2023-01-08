@@ -6,6 +6,8 @@ package Business.SSCampeonato;
  * @version (a version number or a date)
  */
 
+import Business.Database.CircuitoDAO;
+
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -14,6 +16,7 @@ import java.io.Serializable;
 public class Circuito implements Serializable
 {
     /* Variaveis instancia */
+
     private String nome;
     private int voltas;
     private Map<String, Double> dificuldadeCaminho;
@@ -110,5 +113,6 @@ public class Circuito implements Serializable
     }
 
     public void simularCircuito() {
+
     }
 }

@@ -1,9 +1,9 @@
 package Business.Database;
 
+import Business.SSCampeonato.Circuito;
 import Business.SSUtilizador.Administrador;
 import Business.SSUtilizador.Jogador;
 import Business.SSUtilizador.Utilizador;
-import jdk.jshell.execution.Util;
 
 import java.sql.*;
 import java.util.Collection;
@@ -11,30 +11,30 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class UtilizadorDAO implements Map {
+public class CircuitoDAO implements Map {
 
     private Connection con;
 
-    public static UtilizadorDAO singleton;
+    public static CircuitoDAO singleton;
 
-    public UtilizadorDAO(){
+    public CircuitoDAO(){
         this.con = new MainDAO().getConnection();
     }
 
     public static void buildInstance(){
-        if(UtilizadorDAO.singleton == null)
-            UtilizadorDAO.singleton = new UtilizadorDAO();  
+        if(CircuitoDAO.singleton == null)
+            CircuitoDAO.singleton = new CircuitoDAO();
     }
 
-    public Jogador get(int id){
-        String sql = "SELECT * FROM jogador WHERE id = ? ";
+    public Circuito get(int id){
+        String sql = "SELECT * FROM circuito WHERE id = ? ";
         try {
             PreparedStatement select = this.con.prepareStatement(sql);
             select.setInt(1, id);
             ResultSet rs = select.executeQuery();
 
             if(rs.next())
-                return new Jogador(rs.getInt(1), rs.getString(2), rs.getString(3));
+                return new Circuito(rs.getInt(1), rs.getString(2), rs.getString(3));
 
 
         } catch (SQLException e){

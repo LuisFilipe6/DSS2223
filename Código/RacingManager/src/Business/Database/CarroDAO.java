@@ -15,8 +15,15 @@ public class CarroDAO implements Map {
 
     private Connection con;
 
+    private static CarroDAO singleton = null;
+
     public CarroDAO(){
         this.con = new MainDAO().getConnection();
+    }
+
+    public static void buildInstance(){
+        if(CarroDAO.singleton == null)
+            CarroDAO.singleton = new CarroDAO();
     }
 
     public Carro get(int id){
