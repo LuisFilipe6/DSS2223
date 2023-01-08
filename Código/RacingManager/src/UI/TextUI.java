@@ -2,16 +2,17 @@ package UI;
 
 import Business.RacingManager;
 import Business.SSCampeonato.Campeonato;
+import Business.SSCampeonato.Carro;
+import Business.SSCampeonato.Piloto;
 import Business.SSUtilizador.Utilizador;
 import Exceptions.UtilizadorNaoEncontrado;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class TextUI {
 
     private RacingManager rm;
-    public void main(String[] args){
-        new TextUI();
+    public void TextUI(){
         this.rm = new RacingManager();
     }
     private Scanner input;
@@ -74,17 +75,6 @@ public class TextUI {
                 } catch (UtilizadorNaoEncontrado e){
                     System.out.println(e.getMessage());
                 }
-
-                System.out.println("Introduza a opcao que preferir\n" +
-                        "0: Sair\n" +
-                        "1: Criar Campeonato\n" +
-                        "2: Criar Carro\n" +
-                        "3: Criar Piloto\n" +
-                        "4: Criar Circuito");
-                System.out.println("Opcao: ");
-                opcao = Integer.parseInt(this.input.next());
-                tipo=2;
-                run(tipo,opcao);
             }
 
             while(verificado){
@@ -121,8 +111,8 @@ public class TextUI {
                     //simularCampeonato()
                     System.out.println("Seleciona um dos seguintes campeonatos\n" +
                             "Opcao: ");
-                    op = Integer.parseInt(this.input.next());
                     // dar print aos campeonatos
+                    op = Integer.parseInt(this.input.next());
                     System.out.println("Selecione o seu piloto: ");
                     // dar print aos pilotos
                     String piloto = input.next();
@@ -142,7 +132,13 @@ public class TextUI {
                     break;
                 case 1:
                     //adicionarAoCampeonato()
-                    //pedir coisas
+                    System.out.println("Selcione o seu piloto: ");
+                    // dar print aos pilotos
+                    String piloto = input.next();
+                    System.out.println("Selecione o seu carro: ");
+                    // dar print aos carros
+                    String carro = input.next();
+
             }
         } else if (tipo == 2) {
             switch (opcao) {
@@ -151,11 +147,44 @@ public class TextUI {
                     break;
                 case 1:
                     //criarCampeonato();
-                    //pedir coisas
+                    System.out.println("Selecione a quantidade de circuitos que quer: ");
+                    int nCir = Integer.parseInt(this.input.next());
+                    List<Integer> circuitos = new ArrayList<>();
+                    for(int i=0;i<nCir;i++){
+                        // print aos circuitos todos
+                        System.out.println("Selecione um destes circuitos: ");
+                        int op1 = Integer.parseInt(this.input.next());
+                        circuitos.add(op1);
+                        // MUDAR ISTO PARA TER UMA LISTA COM OS CIRCUITOS
+                    }
+                    Map<String, Integer> classificacao = Collections.emptyMap();
+                    Map<String, Utilizador> participantes = Collections.emptyMap();
+                    Map<String, Piloto> pilotos = Collections.emptyMap();
+                    List<Carro> carro = Collections.emptyList();
+                    int nafinacoes = nCir*(2/3);
+                    Campeonato camp = new Campeonato(,classificacao,participantes,pilotos,carro,nafinacoes);
                     break;
                 case 2:
                     //criarCarro();
-                    //pedir coisas
+                    System.out.println("Selecione o tipo de carro: " +
+                            "Hibrido (1): " +
+                            "Combustão (2): ");
+                    int tipoCarro = Integer.parseInt(this.input.next());
+                    System.out.println("Diga a celindrada do carro: ");
+                    int celindrada = Integer.parseInt(this.input.next());
+                    System.out.println("Indica a potência: ");
+                    int potencia = Integer.parseInt(this.input.next());
+                    System.out.println("Indique o p.a.c (0-1) float: ");
+                    float pac = Float.parseFloat(this.input.next());
+                    System.out.println("Indique o downforce float (0-1): ");
+                    float downf = Float.parseFloat(this.input.next());
+                    System.out.println("Indiquie o tipo de peneu\n" +
+                            "1: Chuva\n" +
+                            "2: Macio\n " +
+                            "3: Duro\n ");
+                    System.out.println("Opcao: ");
+                    int peneu = Integer.parseInt(this.input.next());
+
                     break;
                 case 3:
                     //criarPiloto();

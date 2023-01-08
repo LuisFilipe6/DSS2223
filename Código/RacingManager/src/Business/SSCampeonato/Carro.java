@@ -13,13 +13,24 @@ import java.util.Random;
 public abstract class Carro implements Comparable<Carro>,Serializable
 {
     //Variaveis de instancia
+
+    public enum tipoMotor{
+        Hibrido, Combustao
+    }
+
+    public enum tipoPenu{
+        Chuva, Duro, Macio
+    }
     private int id;
     private String marca;
     private String modelo;
     private int cilindrada;
     private int potencia;
     private int fiabilidade;
-    private long tempo;
+
+    private Double pac;
+
+    private Double downforce;
     private boolean dnf;
     
     /* Construtores */
@@ -31,11 +42,12 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         this.cilindrada = 0;
         this.potencia = 0;
         this.fiabilidade = 0;
-        this.tempo = 0;
+        this.pac = 0.0;
+        this.downforce = 0.0;
         this.dnf = false;
     }
     
-    public Carro(String marca, String modelo, int cilindrada, int potencia, int fiabilidade)
+    public Carro(String marca, String modelo, int cilindrada, int potencia, int fiabilidade, double pac, double downforce)
     {
         this.id = id;
         this.marca = marca;
@@ -43,7 +55,8 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         this.cilindrada = cilindrada;
         this.potencia = potencia;
         this.fiabilidade = fiabilidade;
-        this.tempo = 0;
+        this.pac = pac;
+        this.downforce = downforce;
         this.dnf = false;
     }
     
@@ -55,15 +68,18 @@ public abstract class Carro implements Comparable<Carro>,Serializable
        this.cilindrada = c.getCilindrada();
        this.potencia = c.getPotencia();
        this.fiabilidade = c.getFiabilidade();
-       this.tempo = c.getTempo();
+       this.pac = c.getPac();
+       this.downforce = c.getDownforce();
        this.dnf = c.getDNF();
     }
     
     /* Gets e sets */
-    public long getTempo()
+    public double getPac()
     {
-        return this.tempo;
+        return this.pac;
     }
+
+    public double getDownforce(){ return this.downforce; }
 
     public int getId() { return this.id; }
     
@@ -119,10 +135,12 @@ public abstract class Carro implements Comparable<Carro>,Serializable
     }
     
 
-    public void setTempo(long t)
+    public void setPac(double t)
     {
-        this.tempo = t;
+        this.pac = t;
     }
+
+    public void setDownforce(double d){ this.downforce = d; }
     
     public void setDNF(boolean b)
     {
