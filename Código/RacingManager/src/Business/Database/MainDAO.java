@@ -84,6 +84,7 @@ public class MainDAO {
 
             String sql_circuito = "CREATE TABLE `circuito` (\n" +
                     "  `id` varchar(50) NOT NULL,\n" +
+                    "  `nome` varchar(250) NOT NULL\n" +
                     "  `chicane` int(11) NOT NULL,\n" +
                     "  `retas` int(11) NOT NULL,\n" +
                     "  `curvas` int(11) NOT NULL,\n" +

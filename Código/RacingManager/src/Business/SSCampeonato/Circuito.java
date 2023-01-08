@@ -8,6 +8,7 @@ package Business.SSCampeonato;
 
 import Business.Database.CircuitoDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -17,38 +18,35 @@ public class Circuito implements Serializable
 {
     /* Variaveis instancia */
 
+    private String id;
     private String nome;
     private int voltas;
-    private Map<String, Double> dificuldadeCaminho;
+    private List<Terreno> caminho;
 
     /* Construtores */
     public Circuito()
     {
         this.nome = "";
         this.voltas = 0;
-        this.dificuldadeCaminho = new HashMap<>();
 
     }
 
-    public Circuito(String n, int v, Map<String, Double> m)
-    {
-        this.nome = n;
-        this.voltas = v;
-        HashMap<String,Double> aux = new HashMap<>();
-        if(m == null)
-        {
-            for(String s : m.keySet()){
-                aux.put(s, m.get(s));
-            }
+
+    public Circuito(String nome,int nvoltas,String mapa){
+        this.nome = nome;
+        this.voltas = nvoltas;
+        String[] mapaArr = mapa.split(",");
+        for(String pecaMapa: mapaArr){
+            Terreno t = new Terreno(pecaMapa);
+            caminho.add(t);
         }
-        this.dificuldadeCaminho = aux;
     }
     
     public Circuito(Circuito c)
     {
         this.nome = c.getNome();
         this.voltas = c.getVoltas();
-        this.dificuldadeCaminho = c.getDficuldadesCaminho();
+        this.caminho = c.getCaminho();
     }
     
     /* Gets e Sets */
@@ -62,9 +60,9 @@ public class Circuito implements Serializable
         return this.voltas;
     }
 
-    public Map<String, Double> getDficuldadesCaminho()
+    public List<Terreno> getCaminho()
     {
-        return this.dificuldadeCaminho;
+        return this.caminho;
     }
 
     
@@ -78,9 +76,9 @@ public class Circuito implements Serializable
         this.voltas = v;
     }
 
-    public void setDificuldadeCaminho(HashMap<String, Double> b)
+    public void setDificuldadeCaminho(List<Terreno> t)
     {
-        this.dificuldadeCaminho = b;
+        this.caminho = t;
     }
 
     /* Metodos usuais */
@@ -109,7 +107,7 @@ public class Circuito implements Serializable
        Circuito c = (Circuito) o;
        return ( this.nome.equals(c.getNome()) &&
                this.voltas == c.getVoltas() &&
-                this.dificuldadeCaminho == c.getDficuldadesCaminho());
+                this.caminho == c.getCaminho());
     }
 
     public void simularCircuito() {

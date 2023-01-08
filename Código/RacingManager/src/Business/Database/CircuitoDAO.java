@@ -26,15 +26,16 @@ public class CircuitoDAO implements Map {
             CircuitoDAO.singleton = new CircuitoDAO();
     }
 
-    public Circuito get(int id){
+    public Circuito get(String id){
         String sql = "SELECT * FROM circuito WHERE id = ? ";
         try {
             PreparedStatement select = this.con.prepareStatement(sql);
-            select.setInt(1, id);
+            select.setString(1, id);
             ResultSet rs = select.executeQuery();
 
             if(rs.next())
-                return new Circuito(rs.getInt(1), rs.getString(2), rs.getString(3));
+                return new Circuito(rs.getString(0), rs.getString(1)
+                        rs.getInt(1), rs.getString(2), rs.getString(3));
 
 
         } catch (SQLException e){
@@ -54,9 +55,15 @@ public class CircuitoDAO implements Map {
             ResultSet rs = select.executeQuery();
 
             if(rs.next())
-                return new Jogador(rs.getInt(1), rs.getString(2), rs.getString(3));
+                return new  Circuito(rs.getString("id"), rs.getString("nome"),
+                        rs.getInt("Chicane"), rs.getInt("Retas"), rs.getInt("Curvas"),
+                        rs.getInt("Distancia"),
+                        rs.getInt("Nvoltas"), rs.getDouble("Tempomedio"),
+                        rs.getDouble("Record"), rs.getDouble("TempoBox"),
+                        rs.getDouble("TempoDesvio"), rs.getString("DificuldadeRetas"),
+                        rs.getString("DificuldadeCurvas"));
 
-
+        return throw
         } catch (SQLException e){
             System.out.println("Impossible to find user with nome = " + nome + ": " + e.getMessage());
             return null;
@@ -66,30 +73,6 @@ public class CircuitoDAO implements Map {
         return null;
     }
 
-    public Utilizador get(String nome, String password){
-        String sql = "SELECT * FROM jogador WHERE nome = ? AND password = ? ";
-        try {
-            PreparedStatement select = this.con.prepareStatement(sql);
-            select.setString(1, nome);
-            select.setString(2, password);
-            ResultSet rs = select.executeQuery();
-
-            if(rs.next()){
-                if(rs.getInt(4) == 1)
-                    return new Administrador(rs.getInt(1), rs.getString(2), rs.getString(3));
-                else
-                    return new Jogador(rs.getInt(1), rs.getString(2), rs.getString(3));
-            }
-
-
-        } catch (SQLException e){
-            System.out.println("Impossible to find user with nome = " + nome + ": " + e.getMessage());
-            return null;
-        }
-
-
-        return null;
-    }
     public int put(String nome, String password, int admin){
         if(this.get(nome) != null){
             return -1; // VERIFICAR NA AULA
@@ -124,7 +107,7 @@ public class CircuitoDAO implements Map {
     @Override
     public int size() {
         int size = 0;
-        String query = "SELECT count(*)  from jogador";
+        String query = "SELECT count(*)  from circuitos";
         try {
             PreparedStatement preparedStmt = this.con.prepareStatement(query);
 
