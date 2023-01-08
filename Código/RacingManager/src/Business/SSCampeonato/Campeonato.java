@@ -8,13 +8,7 @@ package Business.SSCampeonato;
 
 import Business.SSUtilizador.Utilizador;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.Comparator;
-import java.util.Collections;
+import java.util.*;
 import java.io.Serializable;
 
 public class Campeonato implements Serializable
@@ -24,6 +18,7 @@ public class Campeonato implements Serializable
 
     private int corridaAtual;
 
+    private String nome;
     private Map<String, Utilizador> participantes;
 
     private Map<String, Piloto> pilotos;
@@ -34,6 +29,7 @@ public class Campeonato implements Serializable
 
     public Campeonato()
     {
+        this.nome = "#CAMP-" + new Random().nextInt(1000);
         this.circuitos = new ArrayList<Circuito>();
         this.classificacao = new HashMap<>();
         this.corridaAtual = 0;
@@ -43,7 +39,7 @@ public class Campeonato implements Serializable
         this.carros = new ArrayList<>();
     }
     
-    public Campeonato(List<Circuito> cor, Map<String,Utilizador> part, Map<String,Piloto> pil, int nAfinacoes,
+    public Campeonato(String nome, List<Circuito> cor, Map<String,Utilizador> part, Map<String,Piloto> pil, int nAfinacoes,
                       int corridaAtual, Map<String, Integer> classific, List<Carro> car)
     {
         this();
@@ -73,7 +69,7 @@ public class Campeonato implements Serializable
             aux5.add(c.clone());
         }
 
-
+        this.nome = nome;
         this.circuitos = aux;
         this.pilotos = aux3;
         this.participantes = aux2;
@@ -85,6 +81,7 @@ public class Campeonato implements Serializable
     
     public Campeonato(Campeonato c)
     {
+        this.nome = c.nome;
         this.circuitos = c.getCircuitos();
         this.classificacao = c.getClassificacao();
         this.corridaAtual = c.getCorridasAtual();
@@ -138,6 +135,14 @@ public class Campeonato implements Serializable
 
     public void setPilotos(Map<String, Piloto> p){
         this.pilotos = p;
+    }
+
+    public String getNome(){
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public void setnAfinacoes(int a){

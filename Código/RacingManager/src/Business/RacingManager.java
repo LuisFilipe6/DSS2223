@@ -134,7 +134,17 @@ public class RacingManager implements IRacingManager{
 
     }
 
+    public Campeonato getCampeonato(String nome) throws CampeonatoNaoExistente {
+        for(Campeonato c: this.campeonatos){
+            if(c.getNome().equals(nome)){
+                return c;
+            }
+        }
+        throw new CampeonatoNaoExistente("Não foi possivel encontrar o campeonato");
+    }
+
     public void simulaCampeonato(Campeonato c) throws ImpossivelSimularCampeonato {
         c.simularCampeonato();
     }
+
 }

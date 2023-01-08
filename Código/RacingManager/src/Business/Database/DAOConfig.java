@@ -85,7 +85,7 @@ public class DAOConfig {
 
 
         } catch (SQLException e) {
-            System.out.println("Error while creating: " + e.getMessage());
+            //System.out.println("Error while creating: " + e.getMessage());
         }
 
     }
