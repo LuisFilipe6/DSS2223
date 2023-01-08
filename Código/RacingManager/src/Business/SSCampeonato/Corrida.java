@@ -7,6 +7,8 @@ package Business.SSCampeonato;
  */
 
 import Business.Database.CircuitoDAO;
+import Business.Database.UtilizadorDAO;
+import Business.SSUtilizador.Utilizador;
 
 import java.util.List;
 import java.util.Map;
@@ -234,6 +236,17 @@ public class Corrida implements Serializable
         }
         this.dnf = temp;
     }
+
+    public int getNum(String tipo){
+        int soma = 0;
+        for(Terreno t : this.circuito.getCaminho()) {
+            if(t.getType().equals(tipo)){
+                soma++;
+            }
+        }
+
+        return soma;
+    }
     
     /**
      * Metodo auxiliar privado para determinar o carro que vai em 1o a cada volta
@@ -241,8 +254,13 @@ public class Corrida implements Serializable
 
     public List<String> simularCorrida() {
         Circuito c = CircuitoDAO.buildInstance().get(this.circuito);
-        int nvoltas = c.getNvoltas();
+        int nvoltas = c.getVoltas();
         int nretas = c.getRetas();
+
+        Map<String, Utilizador> sets = new HashMap<>();
+        for (Utilizador u : this.participantes) {
+            sets.put(u.getId(), u);
+        }
     }
 
 }
