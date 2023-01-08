@@ -17,9 +17,9 @@ public class PC2 extends Carro
         super();
     }
     
-    public PC2(String marca, String modelo, int cilindrada, int potencia,  int p_mecanica)
+    public PC2(String marca, String modelo, int cilindrada, int potencia,  int p_mecanica, double pac, double downforce)
     {
-        super(marca,modelo,cilindrada,potencia,70);
+        super(marca,modelo,cilindrada,potencia,70, pac, downforce);
         this.preparacao_mecanica = p_mecanica;
     }
     
@@ -59,5 +59,10 @@ public class PC2 extends Carro
         PC2 c = (PC2) o;
         return ( super.equals(c)
                 && this.preparacao_mecanica == c.getPreparacaoMecaninca());
+    }
+
+    @Override
+    public int compareTo(Carro o) {
+        return 0;
     }
 }

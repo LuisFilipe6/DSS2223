@@ -42,18 +42,19 @@ public class DAOConfig {
 
             String sql_carro = "CREATE TABLE `carro` (\n" +
                     "  `id` int(11) NOT NULL,\n" +
-                    "  `tipo_carro` tinyint(1) NOT NULL,\n" +
+                    "  `tipo_carro` enum('SC','PC2H','PC2','PC1H','PC1','GT','GTH') NOT NULL,\n" +
                     "  `marca` varchar(255) NOT NULL,\n" +
                     "  `modelo` varchar(255) NOT NULL,\n" +
                     "  `cilindrada` int(11) NOT NULL,\n" +
                     "  `potencia` int(11) NOT NULL,\n" +
+                    "  `potencia_eletrica` int(11) NOT NULL,\n" +
                     "  `numero_voltas` int(11) NOT NULL,\n" +
                     "  `dnf` tinyint(1) NOT NULL,\n" +
                     "  `pneu` enum('CHUVA','MACIO','DURO') NOT NULL,\n" +
                     "  `motor` enum('CONSERVADOR','NORMAL','AGRESSIVO') NOT NULL,\n" +
                     "  `pac` double NOT NULL,\n" +
                     "  `downforce` double NOT NULL\n" +
-                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n";
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
             stmt.executeQuery(sql_carro);
 
             String sql_piloto = "CREATE TABLE `piloto` (\n" +

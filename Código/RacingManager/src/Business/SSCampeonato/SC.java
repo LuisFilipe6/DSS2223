@@ -15,9 +15,9 @@ public class SC extends Carro
         super();
     }
     
-    public SC(String marca, String modelo, int cilindrada, int potencia)
+    public SC(String marca, String modelo, int cilindrada, int potencia, double pac, double downforce)
     {
-        super(marca,modelo,cilindrada,potencia,0);
+        super(marca,modelo,cilindrada,potencia,0, pac, downforce);
     }
     
     public SC(SC p)
@@ -57,5 +57,10 @@ public class SC extends Carro
         
         SC c = (SC) o;
         return ( super.equals(c));
+    }
+
+    @Override
+    public int compareTo(Carro o) {
+        return 0;
     }
 }

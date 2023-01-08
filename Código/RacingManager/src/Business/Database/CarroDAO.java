@@ -34,25 +34,27 @@ public class CarroDAO implements Map {
             ResultSet rs = select.executeQuery();
 
             if(rs.next()){
-                String marca = rs.getString(3);
-                String modelo = rs.getString(4);
-                Integer cilindrada = rs.getInt(5);
-                Integer potencia = rs.getInt(6);
+                String marca = rs.getString("marca");
+                String modelo = rs.getString("modelo");
+                Integer cilindrada = rs.getInt("cilindrada");
+                Integer potencia = rs.getInt("potencia");
+                Double pac = rs.getDouble("pac");
+                Double downforce = rs.getDouble("downforce");
                 if(rs.getString(2).equals("SC")){
-                    return new SC(marca, modelo, cilindrada, potencia);
+                    return new SC(marca, modelo, cilindrada, potencia, pac, downforce);
                 }
                 //String marca, String modelo, int cilindrada, int potencia, int p_mecanica, int eletrico
                 //criar funçao
                 String func = rs.getString(2);
                 con.close();
                 if(func.equals("PC2H")){
-                    return new PC2H(marca, modelo, cilindrada, potencia, 0, 0);
+                    return new PC2H(marca, modelo, cilindrada, potencia, pac, downforce, rs.getInt("potencia_eletrica"));
                 }
                 if(func.equals("SC")){
-                    return new SC(marca, modelo, cilindrada, potencia);
+                    return new SC(marca, modelo, cilindrada, potencia, pac, downforce);
                 }
                 if(func.equals("SC")){
-                    return new SC(marca, modelo, cilindrada, potencia);
+                    return new SC(marca, modelo, cilindrada, potencia, pac, downforce);
                 }
 
             }

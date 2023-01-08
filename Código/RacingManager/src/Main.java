@@ -14,8 +14,9 @@ public class Main {
         CarroDAO.buildInstance();
         UtilizadorDAO.buildInstance();
 
+        /*
         UtilizadorDAO j = new UtilizadorDAO();
-        Jogador jog = j.get(2);
+        Jogador jog = j.get(2);*/
 
         try {
             new TextUI();
@@ -24,6 +25,6 @@ public class Main {
         }
 
         //j.remove(3);
-        System.out.println(jog.printInfo());
+        //System.out.println(jog.printInfo());
     }
 }
