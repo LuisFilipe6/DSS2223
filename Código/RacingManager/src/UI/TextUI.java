@@ -12,12 +12,11 @@ import java.util.*;
 public class TextUI {
 
     private RacingManager rm;
-    public void TextUI(){
-        this.rm = new RacingManager();
-    }
+
     private Scanner input;
 
     public TextUI() {
+        this.rm = new RacingManager();
         this.input = new Scanner(System.in);
         String nome;
         String pw;

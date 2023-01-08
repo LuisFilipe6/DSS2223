@@ -157,7 +157,8 @@ public abstract class Carro implements Comparable<Carro>,Serializable
         sb.append("\nCilindrada: ");sb.append(this.cilindrada);
         sb.append("\nPotencia: ");sb.append(this.potencia);
         sb.append("\nFiabiliade: ");sb.append(this.fiabilidade);
-        sb.append("\nTempo: ");sb.append(this.tempo);
+        sb.append("\nPac: ");sb.append(this.pac);
+        sb.append("\nDownforce: ");sb.append(this.downforce);
         sb.append("\nDNF: ");sb.append(this.dnf);
         return sb.toString();
     }
