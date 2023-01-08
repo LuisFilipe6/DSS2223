@@ -1,6 +1,7 @@
 package UI;
 
 import Business.RacingManager;
+import Business.SSCampeonato.Campeonato;
 import Business.SSUtilizador.Utilizador;
 import Exceptions.UtilizadorNaoEncontrado;
 
@@ -31,7 +32,12 @@ public class TextUI {
             nome = input.next();
             System.out.println("Introduza a password:");
             pw = input.next();
-            // loginJogador(none,pw);
+            try{
+                rm.verificaCredenciais(nome,pw);
+            }catch (Exception UtilizadorNaoEncontrado){
+                System.out.println("As credenciais estão erradas!\n");
+                return;
+            }
 
             System.out.println("Introduza a opcao que preferir:\n" +
                     "0: Sair\n" +
@@ -40,7 +46,7 @@ public class TextUI {
             System.out.println("Opcao:");
             opcao = Integer.parseInt(this.input.next());
             tipo = 0;
-            // run(tipo, opcao);
+            run(tipo, opcao);
         } else if (opcao == 2) {
             System.out.println("Introduza o seu nome:");
             nome = input.next();
@@ -53,7 +59,7 @@ public class TextUI {
             tipo = 1;
             // mostrar os campeonatos iniciados
             // adcionaConvidado(nome, campeonato)
-            // run(tipo, opcao);
+            run(tipo, opcao);
         } else if (opcao == 3) {
             boolean verificado = false;
             while(!verificado){
@@ -68,6 +74,17 @@ public class TextUI {
                 } catch (UtilizadorNaoEncontrado e){
                     System.out.println(e.getMessage());
                 }
+
+                System.out.println("Introduza a opcao que preferir\n" +
+                        "0: Sair\n" +
+                        "1: Criar Campeonato\n" +
+                        "2: Criar Carro\n" +
+                        "3: Criar Piloto\n" +
+                        "4: Criar Circuito");
+                System.out.println("Opcao: ");
+                opcao = Integer.parseInt(this.input.next());
+                tipo=2;
+                run(tipo,opcao);
             }
 
             while(verificado){
@@ -90,7 +107,11 @@ public class TextUI {
     }
 
     public void run(Integer tipo, Integer opcao) {
+        // tipo=0 -> jogador deu login e escolheu alguma coisa
+        // tipo=1 -> convidado escolheu o campeonato
+        // topo=2 -> admin deu login e escolheu alguma coisa
         //this.menu.run();
+        int op;
         if (tipo == 0) {
             switch (opcao) {
                 case 0:
@@ -98,7 +119,19 @@ public class TextUI {
                     break;
                 case 1:
                     //simularCampeonato()
-                    //pedir coisas (prints)
+                    System.out.println("Seleciona um dos seguintes campeonatos\n" +
+                            "Opcao: ");
+                    op = Integer.parseInt(this.input.next());
+                    // dar print aos campeonatos
+                    System.out.println("Selecione o seu piloto: ");
+                    // dar print aos pilotos
+                    String piloto = input.next();
+                    System.out.println("Selecione o seu carro: ");
+                    String carro = input.next();
+                    // dar print aos carros
+                    // MUDAR ISTO
+                    Campeonato c = new Campeonato();
+                    c.simularCampeonato();
                 case 2:
                     // verRanking();
             }
