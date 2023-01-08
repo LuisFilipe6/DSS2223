@@ -108,5 +108,7 @@ public class Circuito implements Serializable
                this.voltas == c.getVoltas() &&
                 this.dificuldadeCaminho == c.getDficuldadesCaminho());
     }
-    
+
+    public void simularCircuito() {
+    }
 }

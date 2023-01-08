@@ -143,7 +143,12 @@ public class Campeonato implements Serializable
     public void setnAfinacoes(int a){
         this.nAfinacoes = a;
     }
-    
 
+    public void simularCampeonato() {
+        for(Circuito c: this.circuitos) {
+            System.out.println("A simular circuito: " + c.getNome());
+            c.simularCircuito();
+        }
+    }
 
 }

@@ -136,7 +136,7 @@ public class RacingManager implements IRacingManager{
 
     }
 
-    public void simulaCampeonato() throws ImpossivelSimularCampeonato {
-        
+    public void simulaCampeonato(Campeonato c) throws ImpossivelSimularCampeonato {
+        c.simularCampeonato();
     }
 }
