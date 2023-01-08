@@ -15,11 +15,11 @@ public class Jogador extends Utilizador implements Serializable
 {
   private String nome;
   private String password;
-  private int id;
+  private String id;
 
   public Jogador()
   {
-      this.id = new Random().nextInt(10000);
+      this.id = "#" + new Random().nextInt(10000);
       this.nome = "";
       this.password = "";
   }
@@ -29,7 +29,7 @@ public class Jogador extends Utilizador implements Serializable
         return false;
     }
 
-    public Jogador(int id, String nome, String password)
+    public Jogador(String id, String nome, String password)
   {
       this();
       this.id = id;

@@ -1,37 +1,58 @@
 package Business.Database;
 
+import Business.SSCampeonato.Campeonato;
+import Business.SSCampeonato.Circuito;
+import Business.SSCampeonato.Piloto;
 import Business.SSUtilizador.Administrador;
-import Business.SSUtilizador.Jogador;
 import Business.SSUtilizador.Utilizador;
 
 import java.sql.*;
 import java.util.*;
 
 
-public class UtilizadorDAO implements Map {
+public class CampeonatoDAO implements Map {
 
-    public static UtilizadorDAO singleton;
+    public static CampeonatoDAO singleton;
 
-    public UtilizadorDAO(){
+    public CampeonatoDAO(){
 
     }
 
-    public static UtilizadorDAO buildInstance(){
-        if(UtilizadorDAO.singleton == null)
-            UtilizadorDAO.singleton = new UtilizadorDAO();
-        return UtilizadorDAO.singleton;
+    public static CampeonatoDAO buildInstance(){
+        if(CampeonatoDAO.singleton == null)
+            CampeonatoDAO.singleton = new CampeonatoDAO();
+        return CampeonatoDAO.singleton;
     }
 
-    public Jogador get(int id){
-        String sql = "SELECT * FROM jogador WHERE id = ? ";
+    public Campeonato get(int id){
+        String sql = "SELECT * FROM campeonato WHERE nome = ? ";
         try {
             Connection con = DAOConfig.getConnection();
             PreparedStatement select = con.prepareStatement(sql);
             select.setInt(1, id);
             ResultSet rs = select.executeQuery();
 
-            if(rs.next())
-                return new Jogador(rs.getString("id"), rs.getString(2), rs.getString(3));
+            if(rs.next()){
+                String[] circ = rs.getString("lista_corridas").split(",");
+                List<Circuito> circ_final = new ArrayList<Circuito>();
+                //for(String c : circ) { circ_final.add(c); }
+
+                Map<String, Utilizador> part = new HashMap<>();
+                for(String p : rs.getString("participantes").split(",")){
+                    part.put( p, new UtilizadorDAO().get(p) );
+                }
+
+                Map<String, Piloto> pil = new HashMap<>();
+                for(String p : rs.getString("pilotos").split(",")){
+                    // PILOTOS DAO
+                    // part.put( p, new Piloto().get(p) );
+                }
+
+
+                return new Campeonato(rs.getString("nome"), circ_final, part, pil,
+                        rs.getInt("nAfinacoes"), 0, new HashMap<>(), new ArrayList<>());
+            }
+
 
 
         } catch (SQLException e){
@@ -43,8 +64,8 @@ public class UtilizadorDAO implements Map {
         return null;
     }
 
-    public Jogador get(String nome){
-        String sql = "SELECT * FROM jogador WHERE nome = ? ";
+    public Campeonato get(String nome){
+        String sql = "SELECT * FROM Campeonato WHERE nome = ? ";
         try {
             Connection con = DAOConfig.getConnection();
             PreparedStatement select = con.prepareStatement(sql);
@@ -52,7 +73,8 @@ public class UtilizadorDAO implements Map {
             ResultSet rs = select.executeQuery();
 
             if(rs.next())
-                return new Jogador(rs.getString("id"), rs.getString(2), rs.getString(3));
+                return null;
+                //return new Campeonato(rs.getString("id"), rs.getString(2), rs.getString(3));
 
 
         } catch (SQLException e){
@@ -65,7 +87,7 @@ public class UtilizadorDAO implements Map {
     }
 
     public Utilizador get(String nome, String password){
-        String sql = "SELECT * FROM jogador WHERE nome = ? AND password = ? ";
+        String sql = "SELECT * FROM Campeonato WHERE nome = ? AND password = ? ";
         try {
             Connection con = DAOConfig.getConnection();
             PreparedStatement select = con.prepareStatement(sql);
@@ -74,10 +96,7 @@ public class UtilizadorDAO implements Map {
             ResultSet rs = select.executeQuery();
 
             if(rs.next()){
-                if(rs.getInt(4) == 1)
-                    return new Administrador(rs.getString(1), rs.getString(2), rs.getString(3));
-                else
-                    return new Jogador(rs.getString("id"), rs.getString(2), rs.getString(3));
+                //FALTA
             }
 
 
@@ -94,7 +113,7 @@ public class UtilizadorDAO implements Map {
             return -1; // VERIFICAR NA AULA
         }
 
-        String sql = "INSERT INTO jogador (`nome`, `password`, `admin`)" +
+        String sql = "INSERT INTO Campeonato (`nome`, `password`, `admin`)" +
                 "                      VALUES (?, ?, ?)";
         try {
             Connection con = DAOConfig.getConnection();
@@ -124,7 +143,7 @@ public class UtilizadorDAO implements Map {
     @Override
     public int size() {
         int size = 0;
-        String query = "SELECT count(*)  from jogador";
+        String query = "SELECT count(*)  from Campeonato";
         try {
             Connection con = DAOConfig.getConnection();
             PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -174,7 +193,7 @@ public class UtilizadorDAO implements Map {
     @Override
     public Object remove(Object key) {
         if(!(key instanceof Integer)) return null;
-        String query = "DELETE from jogador WHERE id = ?";
+        String query = "DELETE from Campeonato WHERE id = ?";
         try {
             Connection con = DAOConfig.getConnection();
             PreparedStatement preparedStmt = con.prepareStatement(query);

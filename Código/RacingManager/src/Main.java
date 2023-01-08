@@ -2,6 +2,7 @@ import Business.Database.CarroDAO;
 import Business.Database.DAOConfig;
 import Business.Database.UtilizadorDAO;
 import Business.SSUtilizador.Jogador;
+import Exceptions.CampeonatoNaoExistente;
 import UI.TextUI;
 
 
@@ -22,6 +23,8 @@ public class Main {
             new TextUI();
         } catch(Exception e){
             System.out.println("Impossible to run UI.TextUI");
+        } catch (CampeonatoNaoExistente e) {
+            throw new RuntimeException(e);
         }
 
         //j.remove(3);

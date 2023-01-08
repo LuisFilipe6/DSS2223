@@ -14,7 +14,7 @@ public class TextUI {
 
     private Scanner input;
 
-    public TextUI() {
+    public TextUI() throws CampeonatoNaoExistente {
         this.rm = new RacingManager();
         this.input = new Scanner(System.in);
         String nome;
@@ -45,7 +45,7 @@ public class TextUI {
             System.out.println("Opcao:");
             opcao = Integer.parseInt(this.input.next());
             tipo = 0;
-            run(tipo, opcao);
+            this.run(tipo, opcao);
         } else if (opcao == 2) {
             System.out.println("Introduza o seu nome:");
             nome = input.next();
@@ -98,7 +98,6 @@ public class TextUI {
         // tipo=1 -> convidado escolheu o campeonato
         // topo=2 -> admin deu login e escolheu alguma coisa
         //this.menu.run();
-        this.rm = new RacingManager();
         int op;
         if (tipo == 0) {
             switch (opcao) {
@@ -107,18 +106,60 @@ public class TextUI {
                     break;
                 case 1:
                     //simularCampeonato()
-                    System.out.println("Seleciona um dos seguintes campeonatos, indique o nome\n" +
-                            "Opcao: ");
-                    rm.getCampeonatos().toString();
+                    System.out.println("Seleciona um dos seguintes campeonatos, indique o nome:\n" );
+                    System.out.println("1. Foz do Neiva");
+                    System.out.println("2. Campus UMINHO");
+                    System.out.println("Opção: ");
                     String nome2 = input.next();
                     System.out.println("Selecione o seu piloto: ");
-                    rm.getPilotos().toString();
+                    System.out.println("1. Luis Vilas");
+                    System.out.println("2. João Manuel");
+                    System.out.println("3. Bernardo Lima");
+                    System.out.println("4. Pedro Sequeira");
                     String piloto = input.next();
                     System.out.println("Selecione o seu carro: ");
+                    System.out.println("1. Mazda 2020");
+                    System.out.println("2. Porshe LEI");
+                    System.out.println("3. Mercedes UM");
+                    System.out.println("4. BMW Series 4");
+                    System.out.println("5. Dacia 11");
                     String carro = input.next();
-                    rm.getCarros().toString();
-                    Campeonato c = rm.getCampeonato(nome2);
-                    c.simularCampeonato();
+                    System.out.println("Numero de Jogadores: \n");
+                    int numPer = Integer.parseInt(input.next());
+                    List<String> jogadores = new ArrayList<>();
+                    for(int iii = 0; iii < numPer; iii++) {
+                        System.out.println("Nome: ");
+                        String pessoa = input.next();
+                        jogadores.add(pessoa);
+                    }
+                    HashMap<String, Integer> vencedor = new HashMap<String, Integer>();
+                    System.out.print("O jogo vai iniciar. Pista: ");
+                    String[] pistas = { "Atalanta", "Brasil", "América Norte" };
+                    for(String pista : pistas) {
+                        System.out.println(pista);
+                        int vezes = new Random().nextInt(5);
+                        while(vezes > 0){
+                            System.out.println("Vai na frente o jogador " + jogadores.get(new Random().nextInt(jogadores.size())));
+                            try {
+                                Thread.sleep(1000);
+                            }catch(Exception e) {}
+                            vezes--;
+                        }
+                        String ven = jogadores.get(new Random().nextInt(jogadores.size()));
+                        vencedor.merge(ven, 1, Integer::sum);
+                        System.out.println("Chegou ao fim da pista: " + pista + ". Ganhou o jogador: " + ven);
+                    }
+                    String vencedor_campeonato = "NULL";
+                    int numVitorias = -1;
+                    for(Map.Entry<String, Integer> k : vencedor.entrySet()){
+                        if(k.getValue() > numVitorias)
+                        {
+                            numVitorias = k.getValue();
+                            vencedor_campeonato = k.getKey();
+                        }
+                    }
+                    System.out.println("\n\nO vencedor do torneio é" + vencedor_campeonato + " com " + numVitorias + " vitórias."  + "Chegou ao fim do programa. A sair...");
+                    System.exit(1);
                 case 2:
                     // verRanking();
             }
@@ -207,7 +248,7 @@ public class TextUI {
                         Terreno t = new Terreno(tipo1,dif);
                         caminho.add(t);
                     }
-                    Circuito c = new Circuito(nome1, voltas,)
+                    //Circuito c = new Circuito(nome1, voltas,)
                     break;
                 case 5:
                     //adicionadaAdmin();

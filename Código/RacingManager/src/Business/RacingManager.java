@@ -21,7 +21,7 @@ public class RacingManager implements IRacingManager{
 
 
     public RacingManager(){
-
+        this.utilizadores = new UtilizadorDAO();
     }
     @Override
     public Map<String, Utilizador> getUtilizadores() {
