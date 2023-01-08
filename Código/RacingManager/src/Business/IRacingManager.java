@@ -15,13 +15,13 @@ import java.util.Map;
 
 public interface IRacingManager {
 
-    Map<Integer, Utilizador> getUtilizadores();
+    Map<String, Utilizador> getUtilizadores();
     Map<Integer, Carro> getCarros();
     List<Campeonato> getCampeonatos();
     List<Corrida> getCorridas();
     List<Piloto> getPilotos();
 
-    void setUtilizadores(Map<Integer, Utilizador> u) throws SetItemFailed;
+    void setUtilizadores(Map<String, Utilizador> u) throws SetItemFailed;
     void setCarros(Map<Integer, Carro> c) throws SetItemFailed;
     void setCampeonatos(List<Campeonato> c) throws SetItemFailed;
     void setCorridas(List<Corrida> c) throws SetItemFailed;
